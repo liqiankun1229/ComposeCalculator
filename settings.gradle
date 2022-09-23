@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "OnlyCompose"
+rootProject.name = "ComposeCalculator"
 include ':app'
 include ':lib_net'
