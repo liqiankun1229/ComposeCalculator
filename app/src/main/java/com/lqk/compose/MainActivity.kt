@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
+import com.lqk.compose.vm.MainViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        val mainViewModel = MainViewModel()
+        mainViewModel.loadPackage()
     }
 }
 
