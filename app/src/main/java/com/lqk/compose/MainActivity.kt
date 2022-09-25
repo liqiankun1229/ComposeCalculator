@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
 import com.lqk.compose.vm.MainViewModel
+import com.lqk.data.MMKVHelper
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        MMKVHelper.saveString("project", "CalculatorProject")
         val mainViewModel = MainViewModel()
         mainViewModel.loadPackage()
     }
@@ -203,6 +205,7 @@ fun Home() {
                                     }
                                     "+", "-", "*", "/" -> {
                                         // 运算符
+                                        mTextNum = MMKVHelper.gainString("project", "计算器")
                                     }
                                     "=" -> {
                                         // 计算

@@ -1,0 +1,49 @@
+// OSS_ANDROID_TEMPLATE_FILE_HEADER
+/**
+ * Optional android libraries gradle file
+ *
+ * 去除后面的开源配置
+ * 做注释学习使用
+ *
+ */
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 33
+    }
+
+//    signingConfigs {
+//        configDebug {
+//            keyAlias 'androiddebugkey'
+//            keyPassword 'android'
+//            storeFile rootProject.file('debug.keystore')
+//            storePassword 'android'
+//        }
+//
+//        configRelease {
+//            keyAlias 'androiddebugkey'
+//            keyPassword 'android'
+//            storeFile rootProject.file('debug.keystore')
+//            storePassword 'android'
+//        }
+//    }
+
+    buildTypes {
+        debug {
+            debuggable true
+//            signingConfig signingConfigs.configDebug
+            minifyEnabled false
+        }
+        release {
+//            signingConfig signingConfigs.configRelease
+            minifyEnabled true
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile project.file('proguard-rules-android-lib.pro') // NOTE: default rules for android library if this file exists
+        }
+    }
+}
+

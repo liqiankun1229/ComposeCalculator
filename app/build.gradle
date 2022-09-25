@@ -76,4 +76,5 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha01")
 
     implementation project(":lib_net")
+    implementation project(":lib_data")
 }

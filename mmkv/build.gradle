@@ -1,0 +1,92 @@
+apply from: rootProject.file("mmkv/build_library.gradle")
+
+android {
+//    defaultPublishConfig "DefaultCppRelease"
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                // uncomment this line to support armeabi
+                // abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+            }
+        }
+        ndk {
+            moduleName "mmkv"
+            ldLibs("log", "z", "m")
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+    // uncomment this line to support armeabi by using android-ndk-r16b
+    ndkVersion = '21.0.6113669'
+    buildTypes {
+        release {
+            minifyEnabled false
+            externalNativeBuild {
+                cmake {
+                    cppFlags "-fvisibility=hidden", "-funwind-tables", "-fasynchronous-unwind-tables"
+                }
+            }
+            consumerProguardFiles 'proguard-rules.pro'
+//            debuggable true
+//            jniDebuggable true
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.18.0+"
+        }
+    }
+
+    flavorDimensions "stl_mode"
+//    productFlavors {
+//        DefaultCpp {
+//            dimension "stl_mode"
+//            ext.artifactIdSuffix = ''
+//            externalNativeBuild {
+//                cmake {
+//                    arguments = ["-DANDROID_STL=c++_static"]
+//                    cppFlags "-DMMKV_STL_SHARED=0"
+//                }
+//            }
+//        }
+//        StaticCpp {
+//            dimension "stl_mode"
+//            ext.artifactIdSuffix = 'static'
+//            externalNativeBuild {
+//                cmake {
+//                    arguments = ["-DANDROID_STL=c++_static"]
+//                    cppFlags "-DMMKV_STL_SHARED=0"
+//                }
+//            }
+//        }
+//        SharedCpp {
+//            dimension "stl_mode"
+//            ext.artifactIdSuffix = 'shared'
+//            externalNativeBuild {
+//                cmake {
+//                    arguments = ["-DANDROID_STL=c++_shared"]
+//                    cppFlags "-DMMKV_STL_SHARED=1"
+//                }
+//            }
+//        }
+//    }
+}
+
+configurations {
+    javadocDeps
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.annotation:annotation:1.4.0'
+//    javadocDeps 'androidx.annotation:annotation:1.4.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
