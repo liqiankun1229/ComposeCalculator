@@ -1,6 +1,8 @@
 package com.lqk.compose
 
+import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -13,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.colorspace.ColorSpaces
 import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -22,12 +24,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.FragmentActivity
 import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
 import com.lqk.compose.vm.MainViewModel
 import com.lqk.data.MMKVHelper
+import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.dialog.permissionMapOnQ
 
 class MainActivity : ComponentActivity() {
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -113,6 +122,7 @@ fun autoSize(length: Int): TextUnit {
 @Preview
 @Composable
 fun Home() {
+    val activity = LocalContext.current
     var mText by remember { mutableStateOf("0") }
     var mTextNum by remember { mutableStateOf("0") }
     var img = BitmapPainter(image = ImageBitmap(10, 10))
@@ -203,9 +213,12 @@ fun Home() {
                                             mText = mText.substring(0, mText.length - 1)
                                         }
                                     }
-                                    "+", "-", "*", "/" -> {
+                                    "+" -> {
                                         // 运算符
                                         mTextNum = MMKVHelper.gainString("project", "计算器")
+                                    }
+                                    "-", "*", "/" -> {
+                                        // 运算符
                                     }
                                     "=" -> {
                                         // 计算
