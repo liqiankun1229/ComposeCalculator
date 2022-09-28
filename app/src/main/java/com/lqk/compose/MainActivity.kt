@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -24,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
@@ -51,6 +53,13 @@ class MainActivity : ComponentActivity() {
         val mainViewModel = MainViewModel()
         mainViewModel.loadPackage()
     }
+
+    private val launchPermissionContract = RequestPermission()
+    val launchPermission = registerForActivityResult(launchPermissionContract) {
+        // 请求结果
+        Log.d(TAG, "launch: 权限请求 $it")
+    }
+
 }
 
 @Composable
@@ -219,6 +228,11 @@ fun Home() {
                                     }
                                     "-", "*", "/" -> {
                                         // 运算符
+                                        (activity as MainActivity).launchPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        val check = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        val permission = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+
+                                        Log.d(MainActivity.TAG, "Home: $check : $permission")
                                     }
                                     "=" -> {
                                         // 计算
