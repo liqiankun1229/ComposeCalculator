@@ -5,26 +5,40 @@ import androidx.appcompat.app.AppCompatActivity
 
 /**
  * @author LQK
- * @time 2022/9/27 22:15
+ * @time 2022/8/1 15:33
  *
  */
 abstract class BaseActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         initActivity()
     }
 
-    protected open fun initActivity() {
-        initToolbar()
-        setContentView(initLayoutId())
+    /**
+     * 初始化 Activity (窗口/页面/事件/数据)
+     */
+    open fun initActivity() {
+        initWindow()
+        setContentView(layoutId())
+        initView()
+        initListener()
+        initEvent()
+        initData()
     }
 
-    /**
-     * 布局 Id
-     */
-    abstract fun initLayoutId(): Int
+    open fun initWindow() {}
 
-    protected open fun initToolbar() {}
+    abstract fun layoutId(): Int
+
+    open fun initView() {}
+
+    open fun initListener() {}
+
+    open fun initEvent() {}
+
+    open fun initData() {}
 
 
 }

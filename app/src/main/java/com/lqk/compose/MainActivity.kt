@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
@@ -229,10 +230,12 @@ fun Home() {
                                     "-", "*", "/" -> {
                                         // 运算符
                                         (activity as MainActivity).launchPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                                        val check = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
-                                        val permission = ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
-
-                                        Log.d(MainActivity.TAG, "Home: $check : $permission")
+                                        val checkActivity = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        val permissionActivity =
+                                            ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        val permissionContext = ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        val checkContext = ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        Log.d(MainActivity.TAG, "Home: $checkActivity : $checkContext : $permissionActivity : $permissionContext")
                                     }
                                     "=" -> {
                                         // 计算
