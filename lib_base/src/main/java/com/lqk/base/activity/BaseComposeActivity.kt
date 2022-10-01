@@ -1,14 +1,15 @@
 package com.lqk.base.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 
 /**
  * @author LQK
  * @time 2022/9/27 22:15
  *
  */
-abstract class BaseComposeActivity : AppCompatActivity() {
+abstract class BaseComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initActivity()
@@ -16,15 +17,11 @@ abstract class BaseComposeActivity : AppCompatActivity() {
 
     protected open fun initActivity() {
         initToolbar()
-        setContentView(initLayoutId())
+        setContent{}
     }
 
-    /**
-     * 布局 Id
-     */
-    abstract fun initLayoutId(): Int
-
     protected open fun initToolbar() {}
+
 
 
 }

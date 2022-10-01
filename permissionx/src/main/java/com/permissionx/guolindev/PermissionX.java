@@ -26,58 +26,47 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 /**
- * An open source Android library that makes handling runtime permissions extremely easy.
- *
- * The following snippet shows the simple usage:
- * <pre>
- *   PermissionX.init(activity)
- *      .permissions(Manifest.permission.READ_CONTACTS, Manifest.permission.CAMERA)
- *      .request { allGranted, grantedList, deniedList ->
- *          // handling the logic
- *      }
- *</pre>
- *
- * @author guolin
- * @since 2019/11/2
+ * 一个开源的 Android 库，可以非常轻松地处理运行时权限。以下代码段显示了简单的用法：
+ * PermissionX.init(activity)
+ *    .permissions(Manifest.permission.READ_CONTACTS, Manifest.permission.CAMERA)
+ *    .request { allGranted, grantedList, deniedList ->
+ *        // handling the logic
+ *    }
  */
 public class PermissionX {
 
     /**
-     * Init PermissionX to make everything prepare to work.
-     *
-     * @param activity An instance of FragmentActivity
-     * @return PermissionCollection instance.
+     * 初始化 PermissionX 让一切准备好工作。
+     * @param activity– FragmentActivity 的一个实例
+     * @return PermissionCollection 实例
      */
     public static PermissionMediator init(@NonNull FragmentActivity activity) {
         return new PermissionMediator(activity);
     }
 
     /**
-     * Init PermissionX to make everything prepare to work.
-     *
-     * @param fragment An instance of Fragment
-     * @return PermissionCollection instance.
+     * 初始化 PermissionX 让一切准备好工作。
+     * @param fragment Fragment
+     * @return PermissionCollection 实例的实例。
      */
     public static PermissionMediator init(@NonNull Fragment fragment) {
         return new PermissionMediator(fragment);
     }
 
     /**
-     *  A helper function to check a permission is granted or not.
-     *
-     *  @param context Any context, will not be retained.
-     *  @param permission Specific permission name to check. e.g. [android.Manifest.permission.CAMERA].
-     *  @return True if this permission is granted, False otherwise.
+     *  检查权限的辅助函数是否被授予
+     * @param context 不会保留任何上下文
+     * @param permission 权限 - 要检查的特定权限名称。例如 [android.Manifest.permission.CAMERA]
+     * @return 如果授予此权限，则为 True，否则为 False
      */
     public static boolean isGranted(@NonNull Context context, @NonNull String permission) {
         return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     /**
-     * A helper function to check are notifications are enabled for current app.
-     * @param context
-     *          Any context, will not be retained.
-     * @return Note that if Android version is lower than N, the return value will always be true.
+     * 检查是否为当前应用启用了通知的辅助功能。
+     * @param context – 不会保留任何上下文。
+     * @return 如果 Android 版本低于 N，则返回值将始终为 true。
      */
     public static boolean areNotificationsEnabled(@NonNull Context context) {
         return NotificationManagerCompat.from(context).areNotificationsEnabled();

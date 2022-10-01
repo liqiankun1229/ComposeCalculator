@@ -1,14 +1,13 @@
 package com.lqk.base.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 
 /**
  * @author LQK
  * @time 2022/8/1 15:33
  *
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : androidx.activity.ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,16 +27,34 @@ abstract class BaseActivity : AppCompatActivity() {
         initData()
     }
 
+    /**
+     * 窗口设置
+     */
     open fun initWindow() {}
 
+    /**
+     * 布局 Id
+     */
     abstract fun layoutId(): Int
 
+    /**
+     * 初始样式
+     */
     open fun initView() {}
 
+    /**
+     * 事件监听
+     */
     open fun initListener() {}
 
+    /**
+     * 消息事件
+     */
     open fun initEvent() {}
 
+    /**
+     * 数据请求
+     */
     open fun initData() {}
 
 

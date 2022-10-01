@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import com.lqk.base.activity.BaseComposeActivity
 import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
 import com.lqk.compose.vm.MainViewModel
@@ -35,7 +36,7 @@ import com.lqk.data.MMKVHelper
 import com.permissionx.guolindev.PermissionX
 import com.permissionx.guolindev.dialog.permissionMapOnQ
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseComposeActivity() {
     companion object {
         const val TAG = "MainActivity"
     }
