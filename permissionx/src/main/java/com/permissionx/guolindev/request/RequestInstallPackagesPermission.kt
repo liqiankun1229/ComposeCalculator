@@ -19,10 +19,7 @@ import android.Manifest
 import android.os.Build
 
 /**
- * Implementation for request android.permission.REQUEST_INSTALL_PACKAGES.
- *
- * @author guolin
- * @since 2021/9/18
+ * 请求安装应用的权限 android.permission.REQUEST_INSTALL_PACKAGES
  */
 internal class RequestInstallPackagesPermission internal constructor(permissionBuilder: PermissionBuilder) :
     BaseTask(permissionBuilder) {
@@ -32,7 +29,7 @@ internal class RequestInstallPackagesPermission internal constructor(permissionB
             && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
             && pb.targetSdkVersion >= Build.VERSION_CODES.O) {
             if (pb.activity.packageManager.canRequestPackageInstalls()) {
-                // REQUEST_INSTALL_PACKAGES permission has already granted, we can finish this task now.
+                // REQUEST_INSTALL_PACKAGES 权限已经请求了 直接执行任务
                 finish()
                 return
             }

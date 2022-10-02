@@ -23,10 +23,8 @@ import com.permissionx.guolindev.PermissionX
 import java.util.*
 
 /**
- * Define a BaseTask to implement the duplicate logic codes. No need to implement them in every task.
- *
- * @author guolin
- * @since 2020/6/10
+ * 定义一个 BaseTask 来实现重复的逻辑代码
+ * 无需在每项任务中实施它们
  */
 internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTask {
     /**

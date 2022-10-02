@@ -19,9 +19,7 @@ import com.permissionx.guolindev.PermissionX
 import java.util.*
 
 /**
- * Implementation for request normal permissions.
- * @author guolin
- * @since 2020/6/10
+ * 请求普通权限的任务
  */
 internal class RequestNormalPermissions internal constructor(permissionBuilder: PermissionBuilder) :
     BaseTask(permissionBuilder) {

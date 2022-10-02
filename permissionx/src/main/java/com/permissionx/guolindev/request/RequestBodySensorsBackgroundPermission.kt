@@ -20,9 +20,7 @@ import android.os.Build
 import com.permissionx.guolindev.PermissionX
 
 /**
- * Implementation for request ACCESS_BACKGROUND_LOCATION permission.
- * @author guolin
- * @since 2022/8/26
+ * 请求身体传感器权限
  */
 internal class RequestBodySensorsBackgroundPermission internal constructor(permissionBuilder: PermissionBuilder)
     : BaseTask(permissionBuilder) {

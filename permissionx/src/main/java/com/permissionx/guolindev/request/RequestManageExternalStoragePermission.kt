@@ -19,10 +19,7 @@ import android.os.Build
 import android.os.Environment
 
 /**
- * Implementation for request android.permission.MANAGE_EXTERNAL_STORAGE.
- *
- * @author guolin
- * @since 2021/3/1
+ * 请求管理外部存储权限 android.permission.MANAGE_EXTERNAL_STORAGE
  */
 internal class RequestManageExternalStoragePermission internal constructor(permissionBuilder: PermissionBuilder) :
     BaseTask(permissionBuilder) {

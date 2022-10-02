@@ -31,18 +31,16 @@ import com.permissionx.guolindev.PermissionX
 import java.util.ArrayList
 
 /**
- * An invisible fragment to embedded into activity for handling permission requests.
- * This is very lightweight. Will not affect your app's efficiency.
- *
- * @author guolin
- * @since 2019/11/2
+ * 封装了请求权限的方法
+ * 嵌入到用于处理权限请求的活动中的不可见片段
+ * 这是非常轻量级的, 不会影响您的应用程序的效率
  */
 class InvisibleFragment : Fragment() {
 
     private val handler = Handler(Looper.getMainLooper())
 
     /**
-     * Instance of PermissionBuilder.
+     * PermissionBuilder 实例
      */
     private lateinit var pb: PermissionBuilder
 

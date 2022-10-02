@@ -26,7 +26,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 /**
- * 一个开源的 Android 库，可以非常轻松地处理运行时权限。以下代码段显示了简单的用法：
+ * 一个开源的 Android 库，可以非常轻松地处理运行时权限。以下代码段显示了简单的用法
+ *
  * PermissionX.init(activity)
  *    .permissions(Manifest.permission.READ_CONTACTS, Manifest.permission.CAMERA)
  *    .request { allGranted, grantedList, deniedList ->
@@ -74,7 +75,7 @@ public class PermissionX {
 
     public static final class permission {
         /**
-         * Define the const to compat with system lower than T.
+         * 定义 const 以与低于 TIRAMISU (33) 的系统兼容
          */
         public static final String POST_NOTIFICATIONS = "android.permission.POST_NOTIFICATIONS";
     }

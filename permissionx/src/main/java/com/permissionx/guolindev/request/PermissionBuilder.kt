@@ -36,10 +36,7 @@ import com.permissionx.guolindev.dialog.RationaleDialogFragment
 import java.util.*
 
 /**
- * More APIs for developers to control PermissionX functions.
- *
- * @author guolin
- * @since 2019/11/17
+ * 更多 API 供开发人员控制 PermissionX 功能
  */
 class PermissionBuilder(
     fragmentActivity: FragmentActivity?,
@@ -49,12 +46,13 @@ class PermissionBuilder(
 ) {
 
     /**
-     * Instance of activity for everything.
+     * 初始化 Activity 的实例
      */
     lateinit var activity: FragmentActivity
 
     /**
      * Instance of fragment for everything as an alternative choice for activity.
+     * fragment 实例
      */
     private var fragment: Fragment? = null
 
@@ -263,14 +261,10 @@ class PermissionBuilder(
     }
 
     /**
-     * Set the tint color to the default rationale dialog.
-     * @param lightColor
-     * Used in light theme. A color value in the form 0xAARRGGBB. Do not pass a resource ID.
-     * To get a color value from a resource ID, call getColor.
-     * @param darkColor
-     * Used in dark theme. A color value in the form 0xAARRGGBB. Do not pass a resource ID.
-     * To get a color value from a resource ID, call getColor.
-     * @return PermissionBuilder itself.
+     * 将色调颜色设置为默认的基本原理对话框。
+     * @param lightColor - 用于浅色主题。 0xAARRGGBB 形式的颜色值。不要传递资源 ID。要从资源 ID 中获取颜色值，请调用 getColor
+     * @param darkColor - 用于深色主题。 0xAARRGGBB 形式的颜色值。不要传递资源 ID。要从资源 ID 中获取颜色值，请调用 getColor
+     * @return PermissionBuilder 本身
      */
     fun setDialogTintColor(lightColor: Int, darkColor: Int): PermissionBuilder {
         this.lightColor = lightColor
@@ -279,9 +273,8 @@ class PermissionBuilder(
     }
 
     /**
-     * Request permissions at once, and handle request result in the callback.
-     *
-     * @param callback Callback with 3 params. allGranted, grantedList, deniedList.
+     * 一次请求权限，并在回调中处理请求结果。
+     * @return callback - 带有 3 个参数的回调。 allGranted、grantedList、deniedList。
      */
     fun request(callback: RequestCallback?) {
         requestCallback = callback
@@ -337,7 +330,7 @@ class PermissionBuilder(
         dialog: RationaleDialog
     ) {
         showDialogCalled = true
-        val permissions = dialog.permissionsToRequest
+        val permissions = dialog.getPermissionsToRequest()
         if (permissions.isEmpty()) {
             chainTask.finish()
             return
@@ -350,8 +343,8 @@ class PermissionBuilder(
             dialog.dismiss()
             chainTask.finish()
         }
-        val positiveButton = dialog.positiveButton
-        val negativeButton = dialog.negativeButton
+        val positiveButton = dialog.getPositiveButton()
+        val negativeButton = dialog.getNegativeButton()
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
         positiveButton.isClickable = true

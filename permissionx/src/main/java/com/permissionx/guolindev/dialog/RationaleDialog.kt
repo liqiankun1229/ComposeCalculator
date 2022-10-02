@@ -13,57 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.permissionx.guolindev.dialog
 
-package com.permissionx.guolindev.dialog;
-
-import android.app.Dialog;
-import android.content.Context;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import java.util.List;
+import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.DialogInterface.OnCancelListener
+import android.view.View
 
 /**
- *  Base Dialog class to inherits to display a rationale dialog and show user why you need the permissions that you asked.
- *  Your dialog must have a positive button to proceed request and an optional negative button to cancel request. Override
- *  {@link RationaleDialog#getPositiveButton()} and {@link RationaleDialog#getNegativeButton()} to implement that.
- *  @author guolin
- *  @since 2020/7/6
+ * 默认对话框基类
+ * 构造方法
+ * 确认按钮
+ * 取消按钮
+ * 请求的权限列表
  */
-public abstract class RationaleDialog extends Dialog {
-
-    public RationaleDialog(@NonNull Context context) {
-        super(context);
-    }
-
-    public RationaleDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
-    }
-
-    protected RationaleDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
+abstract class RationaleDialog : Dialog {
+    constructor(context: Context) : this(context, -1)
+    constructor(context: Context, themeResId: Int) : super(context, themeResId)
+    protected constructor(context: Context, cancelable: Boolean, cancelListener: OnCancelListener?)
+            : super(context, cancelable, cancelListener)
 
     /**
-     * Return the instance of positive button on the dialog. Your dialog must have a positive button to proceed request.
-     * @return The instance of positive button on the dialog.
+     * 请求按钮
      */
-    abstract public @NonNull View getPositiveButton();
+    abstract fun getPositiveButton(): View
 
     /**
-     * Return the instance of negative button on the dialog.
-     * If the permissions that you request are mandatory, your dialog can have no negative button.
-     * In this case, you can simply return null.
-     * @return The instance of positive button on the dialog, or null if your dialog has no negative button.
+     * 取消按钮
      */
-    abstract public @Nullable View getNegativeButton();
+    abstract fun getNegativeButton(): View?
 
     /**
-     * Provide permissions to request. These permissions should be the ones that shows on your rationale dialog.
-     * @return Permissions list to request.
+     * 请求的权限列表
      */
-    abstract public @NonNull List<String> getPermissionsToRequest();
-
+    abstract fun getPermissionsToRequest(): List<String>
 }

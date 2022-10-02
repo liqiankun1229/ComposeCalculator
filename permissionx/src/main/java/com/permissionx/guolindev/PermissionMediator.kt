@@ -25,10 +25,7 @@ import com.permissionx.guolindev.request.RequestBackgroundLocationPermission
 import kotlin.collections.LinkedHashSet
 
 /**
- * An internal class to provide specific scope for passing permissions param.
- *
- * @author guolin
- * @since 2019/11/2
+ * 为传递权限参数提供特定范围的内部类
  */
 class PermissionMediator {
 

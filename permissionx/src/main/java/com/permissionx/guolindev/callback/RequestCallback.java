@@ -18,26 +18,19 @@ package com.permissionx.guolindev.callback;
 
 import androidx.annotation.NonNull;
 
-import com.permissionx.guolindev.request.PermissionBuilder;
-
 import java.util.List;
 
 /**
- * Callback for {@link PermissionBuilder#request(RequestCallback)} method.
- *
- * @author guolin
- * @since 2020/6/7
+ * 请求权限的回调 用于
+ * {@link com.permissionx.guolindev.request.PermissionBuilder#request(RequestCallback)}
  */
 public interface RequestCallback {
 
     /**
-     * Callback for the request result.
-     * @param allGranted
-     *          Indicate if all permissions that are granted.
-     * @param grantedList
-     *          All permissions that granted by user.
-     * @param deniedList
-     *          All permissions that denied by user.
+     * 请求结果的回调
+     * @param allGranted – 指示是否授予了所有权限
+     * @param grantedList – 用户授予的所有权限
+     * @param deniedList – 用户拒绝的所有权限
      */
     void onResult(boolean allGranted, @NonNull List<String> grantedList, @NonNull List<String> deniedList);
 

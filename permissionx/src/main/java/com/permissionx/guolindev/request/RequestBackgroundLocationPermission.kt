@@ -20,9 +20,8 @@ import android.os.Build
 import com.permissionx.guolindev.PermissionX
 
 /**
- * Implementation for request ACCESS_BACKGROUND_LOCATION permission.
- * @author guolin
- * @since 2020/6/10
+ * 请求 后台定位权限{ @link ACCESS_BACKGROUND_LOCATION }
+ *
  */
 internal class RequestBackgroundLocationPermission internal constructor(permissionBuilder: PermissionBuilder)
     : BaseTask(permissionBuilder) {

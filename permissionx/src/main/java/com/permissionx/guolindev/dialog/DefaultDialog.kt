@@ -31,10 +31,7 @@ import com.permissionx.guolindev.databinding.PermissionxDefaultDialogLayoutBindi
 import com.permissionx.guolindev.databinding.PermissionxPermissionItemBinding
 
 /**
- * Default rationale dialog to show if developers did not implement their own custom rationale dialog.
- *
- * @author guolin
- * @since 2020/8/27
+ * 默认基本原理对话框显示开发人员是否没有实现他们自己的自定义基本原理对话框
  */
 class DefaultDialog(context: Context,
     private val permissions: List<String>,

@@ -16,10 +16,10 @@ level:[VERBOSE | INFO | ASSERT |DEBUG | WARN | ERROR ]
 
 
 ### 模块
-- app - 启动看效果图
+- app 启动看效果图
 - lib_data 数据持久化 -> MMKV 引入并注释
 - lib_net 网络请求
-
+- lib_permission 运行时权限
 
 ### MMKV ###
 jni 使用动态注册方式 ,在 java/kotlin 层 native 不会链接到 c++ 层 (报错) <br>

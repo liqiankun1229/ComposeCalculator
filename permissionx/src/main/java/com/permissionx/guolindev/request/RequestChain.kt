@@ -16,9 +16,7 @@
 package com.permissionx.guolindev.request
 
 /**
- * Maintain the task chain of permission request process.
- * @author guolin
- * @since 2020/6/10
+ * 维护权限请求流程的任务链
  */
 class RequestChain {
     /**
