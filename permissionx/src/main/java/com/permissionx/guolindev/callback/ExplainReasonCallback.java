@@ -24,7 +24,7 @@ import com.permissionx.guolindev.request.PermissionBuilder;
 import java.util.List;
 
 /**
- * Callback for {@link PermissionBuilder#onExplainRequestReason(ExplainReasonCallback)} method.
+ * 回调 {@link PermissionBuilder#onExplainRequestReason(ExplainReasonCallback)} 方法
  *
  * @author guolin
  * @since 2020/6/7
@@ -32,9 +32,8 @@ import java.util.List;
 public interface ExplainReasonCallback {
 
     /**
-     * Called when you should explain why you need these permissions.
-     * @param scope
-     *          Scope to show rationale dialog.
+     * 解释为什么需要这些权限时调用
+     * @param scope Scope to show rationale dialog.
      * @param deniedList
      *          Permissions that you should explain.
      */

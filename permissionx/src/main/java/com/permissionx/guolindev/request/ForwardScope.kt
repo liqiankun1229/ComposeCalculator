@@ -20,7 +20,8 @@ import com.permissionx.guolindev.dialog.RationaleDialog
 import com.permissionx.guolindev.dialog.RationaleDialogFragment
 
 /**
- * Provide specific scopes for [com.permissionx.guolindev.callback.ForwardToSettingsCallback]
+ * Provide specific scopes for
+ * [com.permissionx.guolindev.callback.ForwardToSettingsCallback]
  * to give it specific functions to call.
  * @author guolin
  * @since 2020/3/18

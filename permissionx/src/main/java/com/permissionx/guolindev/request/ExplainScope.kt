@@ -20,8 +20,10 @@ import com.permissionx.guolindev.dialog.RationaleDialog
 import com.permissionx.guolindev.dialog.RationaleDialogFragment
 
 /**
- * Provide specific scopes for [com.permissionx.guolindev.callback.ExplainReasonCallback]
- * and [com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam] to give it specific functions to call.
+ * Provide specific scopes for
+ * [com.permissionx.guolindev.callback.ExplainReasonCallback]
+ * and
+ * [com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam] to give it specific functions to call.
  * @author guolin
  * @since 2020/3/18
  */

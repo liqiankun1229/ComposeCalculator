@@ -20,10 +20,7 @@ import android.os.Build
 import android.provider.Settings
 
 /**
- * Implementation for request android.permission.SYSTEM_ALERT_WINDOW.
- *
- * @author guolin
- * @since 2020/12/28
+ * 请求系统对话框 android.permission.SYSTEM_ALERT_WINDOW.
  */
 internal class RequestSystemAlertWindowPermission internal constructor(permissionBuilder: PermissionBuilder) :
     BaseTask(permissionBuilder) {

@@ -18,9 +18,8 @@ package com.permissionx.guolindev.request
 import com.permissionx.guolindev.PermissionX
 
 /**
+ * 请求通知权限 33 新增动态权限
  * Implementation for request notification permission below Android T.
- * @author guolin
- * @since 2022/8/21
  */
 internal class RequestNotificationPermission internal constructor(permissionBuilder: PermissionBuilder)
     : BaseTask(permissionBuilder) {

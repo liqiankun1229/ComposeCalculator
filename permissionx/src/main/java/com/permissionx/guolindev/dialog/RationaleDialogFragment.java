@@ -43,16 +43,12 @@ public abstract class RationaleDialogFragment extends DialogFragment {
     }
 
     /**
-     * Return the instance of positive button on the DialogFragment. Your DialogFragment must have a positive button to proceed request.
-     * @return The instance of positive button on the DialogFragment.
+     * 获取确认按钮控件
      */
     abstract public @NonNull View getPositiveButton();
 
     /**
-     * Return the instance of negative button on the DialogFragment.
-     * If the permissions that you request are mandatory, your DialogFragment can have no negative button.
-     * In this case, you can simply return null.
-     * @return The instance of positive button on the DialogFragment, or null if your DialogFragment has no negative button.
+     * 获取取消按钮控件
      */
     abstract public @Nullable View getNegativeButton();
 

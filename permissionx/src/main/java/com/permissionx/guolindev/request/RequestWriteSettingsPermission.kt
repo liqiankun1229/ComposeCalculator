@@ -20,10 +20,8 @@ import android.os.Build
 import android.provider.Settings
 
 /**
- * Implementation for request android.permission.WRITE_SETTINGS.
+ * 请求修改系统设置的权限 android.permission.WRITE_SETTINGS.
  *
- * @author guolin
- * @since 2021/2/21
  */
 internal class RequestWriteSettingsPermission internal constructor(permissionBuilder: PermissionBuilder) :
     BaseTask(permissionBuilder) {

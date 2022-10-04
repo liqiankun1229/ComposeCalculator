@@ -47,6 +47,9 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
 
     override fun getForwardScope() = forwardToSettingsScope
 
+    /**
+     * 结束任务
+     */
     override fun finish() {
         // If there's next task, then run it.
         next?.request() ?: run {

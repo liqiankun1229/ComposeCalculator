@@ -127,7 +127,10 @@ class PermissionBuilder(
     var explainReasonBeforeRequest = false
 
     /**
-     * Indicates [ExplainScope.showRequestReasonDialog] or [ForwardScope.showForwardToSettingsDialog]
+     * Indicates
+     * [ExplainScope.showRequestReasonDialog]
+     * or
+     * [ForwardScope.showForwardToSettingsDialog]
      * is called in [.onExplainRequestReason] or [.onForwardToSettings] callback.
      * If not called, requestCallback will be called by PermissionX automatically.
      */
@@ -209,12 +212,11 @@ class PermissionBuilder(
         get() = activity.applicationInfo.targetSdkVersion
 
     /**
-     * Called when permissions need to explain request reason.
-     * Typically every time user denies your request would call this method.
-     * If you chained [.explainReasonBeforeRequest], this method might run before permission request.
-     *
-     * @param callback Callback with permissions denied by user.
-     * @return PermissionBuilder itself.
+     * 当权限需要解释请求原因时调用
+     * 通常, 每次用户拒绝您的请求时都会调用此方法
+     * 如果您链接.explainReasonBeforeRequest, 此方法可能会在权限请求之前运行
+     * @param callback - 用户拒绝权限的回调
+     * @return PermissionBuilder 本身
      */
     fun onExplainRequestReason(callback: ExplainReasonCallback?): PermissionBuilder {
         explainReasonCallback = callback
@@ -222,13 +224,11 @@ class PermissionBuilder(
     }
 
     /**
-     * Called when permissions need to explain request reason.
-     * Typically every time user denies your request would call this method.
-     * If you chained [.explainReasonBeforeRequest], this method might run before permission request.
-     * beforeRequest param would tell you this method is currently before or after permission request.
-     *
-     * @param callback Callback with permissions denied by user.
-     * @return PermissionBuilder itself.
+     * 当权限需要解释请求原因时调用
+     * 通常，每次用户拒绝您的请求时都会调用此方法
+     * 如果您链接.explainReasonBeforeRequest ，此方法可能会在权限请求之前运行。 beforeRequest 参数会告诉您此方法当前是在权限请求之前或之后。
+     * @param callback - 用户拒绝权限的回调。
+     * @return PermissionBuilder 本身
      */
     fun onExplainRequestReason(callback: ExplainReasonCallbackWithBeforeParam?): PermissionBuilder {
         explainReasonCallbackWithBeforeParam = callback
@@ -315,14 +315,11 @@ class PermissionBuilder(
     }
 
     /**
-     * This method is internal, and should not be called by developer.
-     *
-     *
-     * Show a dialog to user and  explain why these permissions are necessary.
-     *
-     * @param chainTask              Instance of current task.
-     * @param showReasonOrGoSettings Indicates should show explain reason or forward to Settings.
-     * @param dialog                 Dialog to explain to user why these permissions are necessary.
+     * 此方法是内部的，不应由开发人员调用
+     * 向用户显示一个对话框并解释为什么需要这些权限
+     * @param chainTask - 当前任务的实例
+     * @param showReasonOrGoSettings - 表示应该显示解释原因或转发到设置
+     * @param dialog - 向用户解释为什么需要这些权限的对话框
      */
     fun showHandlePermissionDialog(
         chainTask: ChainTask,
@@ -363,16 +360,14 @@ class PermissionBuilder(
                 chainTask.finish()
             }
         }
+        // 销毁
         currentDialog?.setOnDismissListener {
             currentDialog = null
         }
     }
 
     /**
-     * This method is internal, and should not be called by developer.
-     *
-     *
-     * Show a DialogFragment to user and  explain why these permissions are necessary.
+     * 向用户显示 DialogFragment 并解释为什么需要这些权限
      *
      * @param chainTask              Instance of current task.
      * @param showReasonOrGoSettings Indicates should show explain reason or forward to Settings.

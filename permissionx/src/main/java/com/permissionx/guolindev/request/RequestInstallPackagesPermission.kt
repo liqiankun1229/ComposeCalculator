@@ -20,6 +20,7 @@ import android.os.Build
 
 /**
  * 请求安装应用的权限 android.permission.REQUEST_INSTALL_PACKAGES
+ * 8.0 后新增权限
  */
 internal class RequestInstallPackagesPermission internal constructor(permissionBuilder: PermissionBuilder) :
     BaseTask(permissionBuilder) {

@@ -19,41 +19,37 @@ package com.permissionx.guolindev.request;
 import java.util.List;
 
 /**
- * Define a task interface to request permissions.
- * Not all permissions can be requested at one time. Some permissions need to request separately.
- * So each permission request need to implement this interface, and do the request logic in their implementations.
- *
- * @author guolin
- * @since 2020/6/10
+ * 定义一个任务接口来请求权限
+ * 并非一次可以请求所有权限
+ * 有些权限需要单独申请 所以每个权限请求都需要实现这个接口，并在其实现中做请求逻辑
  */
 public interface ChainTask {
 
     /**
-     * Get the ExplainScope for showing RequestReasonDialog.
-     * @return Instance of ExplainScope.
+     * 获取用于显示 RequestReasonDialog 的 ExplainScope。
+     * @return ExplainScope 的实例
      */
     ExplainScope getExplainScope();
 
     /**
-     * Get the ForwardScope for showing ForwardToSettingsDialog.
-     * @return Instance of ForwardScope.
+     * 获取 ForwardScope 以显示 ForwardToSettingsDialog
+     * @return ForwardScope 实例
      */
     ForwardScope getForwardScope();
 
     /**
-     * Do the request logic.
+     * 做请求逻辑
      */
     void request();
 
     /**
-     * Request permissions again when user denied.
-     * @param permissions
-     *          Permissions to request again.
+     * 当用户被拒绝时再次请求权限
+     * @param permissions - 再次请求的权限
      */
     void requestAgain(List<String> permissions);
 
     /**
-     * Finish this task and notify the request result.
+     * 完成此任务并通知请求结果
      */
     void finish();
 }

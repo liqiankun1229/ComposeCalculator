@@ -51,8 +51,11 @@ internal class RequestManageExternalStoragePermission internal constructor(permi
         finish()
     }
 
+    /**
+     * 封装的是 管理外部存储权限
+     */
     override fun requestAgain(permissions: List<String>) {
-        // don't care what the permissions param is, always request WRITE_SETTINGS permission.
+        // 不在乎权限参数是什么, 总是请求 WRITE_SETTINGS 权限
         pb.requestManageExternalStoragePermissionNow(this)
     }
 

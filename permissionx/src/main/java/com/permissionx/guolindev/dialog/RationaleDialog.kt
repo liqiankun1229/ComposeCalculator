@@ -35,12 +35,12 @@ abstract class RationaleDialog : Dialog {
             : super(context, cancelable, cancelListener)
 
     /**
-     * 请求按钮
+     * 获取(确认-允许)按钮
      */
     abstract fun getPositiveButton(): View
 
     /**
-     * 取消按钮
+     * 获取(取消-拒绝)按钮 必要权限 取消可为空!
      */
     abstract fun getNegativeButton(): View?
 
