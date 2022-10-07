@@ -27,27 +27,27 @@ internal class RequestNotificationPermission internal constructor(permissionBuil
     override fun request() {
         if (pb.shouldRequestNotificationPermission()) {
             if (PermissionX.areNotificationsEnabled(pb.activity)) {
-                // notification permission has already granted, we can finish this task now.
+                // 通知权限已经授予 我们现在可以完成这个任务了
                 finish()
                 return
             }
             if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                 val requestList = mutableListOf(PermissionX.permission.POST_NOTIFICATIONS)
                 if (pb.explainReasonCallbackWithBeforeParam != null) {
-                    // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                    // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                 } else {
-                    pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                    pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                 }
                 return
             }
         }
-        // Shouldn't request notification at this time, so we call finish() to finish this task.
+        // 此时不应请求通知 因此我们调用 finish() 来结束此任务
         finish()
     }
 
     override fun requestAgain(permissions: List<String>) {
-        // Don't care what the permissions param is, always request notification permission.
+        // 不要关心权限参数是什么 总是请求通知权限
         pb.requestNotificationPermissionNow(this)
     }
 }

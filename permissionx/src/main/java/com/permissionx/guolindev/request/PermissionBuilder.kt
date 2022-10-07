@@ -82,9 +82,9 @@ class PermissionBuilder(
         }
 
     /**
-     * Get the invisible fragment in activity for request permissions.
-     * If there is no invisible fragment, add one into activity.
-     * Don't worry. This is very lightweight.
+     * 获取请求权限的活动中的不可见片段
+     * 如果没有不可见的片段,则在活动中添加一个
+     * 不用担心,这是非常轻量级的
      */
     private val invisibleFragment: InvisibleFragment
         get() {
@@ -101,112 +101,111 @@ class PermissionBuilder(
         }
 
     /**
-     * Instance of the current dialog that shows to user.
-     * We need to dismiss this dialog when InvisibleFragment destroyed.
+     * 向用户显示的当前对话框的实例
+     * 当 InvisibleFragment 被销毁时, 我们需要关闭此对话框
      */
     @JvmField
     var currentDialog: Dialog? = null
 
     /**
-     * Normal runtime permissions that app want to request.
+     * 应用想要请求的正常运行时权限
      */
     @JvmField
     var normalPermissions: MutableSet<String>
 
     /**
-     * Special permissions that we need to handle by special case.
-     * Such as SYSTEM_ALERT_WINDOW, WRITE_SETTINGS and MANAGE_EXTERNAL_STORAGE.
+     * 我们需要通过特殊情况处理的特殊权限
+     * 如 SYSTEM_ALERT_WINDOW / WRITE_SETTINGS / MANAGE_EXTERNAL_STORAGE
      */
     @JvmField
     var specialPermissions: MutableSet<String>
 
     /**
-     * Indicates should PermissionX explain request reason before request.
+     * 表示 PermissionX 应在请求之前说明请求原因
      */
     @JvmField
     var explainReasonBeforeRequest = false
 
     /**
-     * Indicates
+     * 表示
      * [ExplainScope.showRequestReasonDialog]
-     * or
+     * 或
      * [ForwardScope.showForwardToSettingsDialog]
-     * is called in [.onExplainRequestReason] or [.onForwardToSettings] callback.
-     * If not called, requestCallback will be called by PermissionX automatically.
+     * 在 [.onExplainRequestReason] 或 [.onForwardToSettings] 回调中调用
+     * 如果未调用, 则 PermissionX 会自动调用 requestCallback
      */
     @JvmField
     var showDialogCalled = false
 
     /**
-     * Some permissions shouldn't request will be stored here. And notify back to user when request finished.
+     * 一些不应该请求的权限将存储在这里
+     * 并在请求完成时通知用户
      */
     @JvmField
     var permissionsWontRequest: MutableSet<String> = LinkedHashSet()
 
     /**
-     * Holds permissions that have already granted in the requested permissions.
+     * 持有已在请求的权限中授予的权限
      */
     @JvmField
     var grantedPermissions: MutableSet<String> = LinkedHashSet()
 
     /**
-     * Holds permissions that have been denied in the requested permissions.
+     * 持有在请求的权限中被拒绝的权限
      */
     @JvmField
     var deniedPermissions: MutableSet<String> = LinkedHashSet()
 
     /**
-     * Holds permissions that have been permanently denied in the requested permissions.
-     * (Deny and never ask again)
+     * 持有在请求的权限中被永久拒绝的权限。（拒绝，不再询问）
      */
     @JvmField
     var permanentDeniedPermissions: MutableSet<String> = LinkedHashSet()
 
     /**
-     * When we request multiple permissions. Some are denied, some are permanently denied.
-     * Denied permissions will be callback first.
-     * And the permanently denied permissions will store in this tempPermanentDeniedPermissions.
-     * They will be callback once no more denied permissions exist.
+     * 当我们请求多个权限时, 有些被拒绝，有些被永久拒绝
+     * 拒绝的权限将首先回调, 并且永久拒绝的权限将存储在这个 [tempPermanentDeniedPermissions] 中
+     * 一旦不再存在被拒绝的权限, 它们将被回调
      */
     @JvmField
     var tempPermanentDeniedPermissions: MutableSet<String> = LinkedHashSet()
 
     /**
-     * Holds permissions which should forward to Settings to allow them.
-     * Not all permanently denied permissions should forward to Settings.
-     * Only the ones developer think they are necessary should.
+     * 持有应该转发到设置以允许它们的权限
+     * 并非所有永久拒绝的权限都应转发到“设置”
+     * 只有那些开发人员认为他们是必要的才应该
      */
     @JvmField
     var forwardPermissions: MutableSet<String> = LinkedHashSet()
 
     /**
-     * The callback for [.request] method. Can not be null.
+     * [request] 方法的回调 不能为空
      */
     @JvmField
     var requestCallback: RequestCallback? = null
 
     /**
-     * The callback for [.onExplainRequestReason] method. Maybe null.
+     * [onExplainRequestReason] 方法的回调 也许是空的
      */
     @JvmField
     var explainReasonCallback: ExplainReasonCallback? = null
 
     /**
-     * The callback for [.onExplainRequestReason] method, but with beforeRequest param. Maybe null.
+     * [onExplainRequestReason] 方法的回调 但带有 beforeRequest 参数 也许是空的
      */
     @JvmField
     var explainReasonCallbackWithBeforeParam: ExplainReasonCallbackWithBeforeParam? = null
 
     /**
-     * The callback for [.onForwardToSettings] method. Maybe null.
+     * [onForwardToSettings] 方法的回调 也许是空的
      */
     @JvmField
     var forwardToSettingsCallback: ForwardToSettingsCallback? = null
 
     /**
-     * Get the targetSdkVersion of current app.
+     * 获取当前应用的 targetSdkVersion
      *
-     * @return The targetSdkVersion of current app.
+     * @return 当前应用的 targetSdkVersion
      */
     val targetSdkVersion: Int
         get() = activity.applicationInfo.targetSdkVersion
@@ -214,7 +213,7 @@ class PermissionBuilder(
     /**
      * 当权限需要解释请求原因时调用
      * 通常, 每次用户拒绝您的请求时都会调用此方法
-     * 如果您链接.explainReasonBeforeRequest, 此方法可能会在权限请求之前运行
+     * 如果您链接[explainReasonBeforeRequest], 此方法可能会在权限请求之前运行
      * @param callback - 用户拒绝权限的回调
      * @return PermissionBuilder 本身
      */
@@ -226,8 +225,10 @@ class PermissionBuilder(
     /**
      * 当权限需要解释请求原因时调用
      * 通常，每次用户拒绝您的请求时都会调用此方法
-     * 如果您链接.explainReasonBeforeRequest ，此方法可能会在权限请求之前运行。 beforeRequest 参数会告诉您此方法当前是在权限请求之前或之后。
-     * @param callback - 用户拒绝权限的回调。
+     * 如果您链接 [explainReasonBeforeRequest] 此方法可能会在权限请求之前运行
+     * [beforeRequest] 参数会告诉您此方法当前是在权限请求之前或之后
+     *
+     * @param callback - 用户拒绝权限的回调
      * @return PermissionBuilder 本身
      */
     fun onExplainRequestReason(callback: ExplainReasonCallbackWithBeforeParam?): PermissionBuilder {
@@ -236,13 +237,13 @@ class PermissionBuilder(
     }
 
     /**
-     * Called when permissions need to forward to Settings for allowing.
-     * Typically user denies your request and checked never ask again would call this method.
-     * Remember [.onExplainRequestReason] is always prior to this method.
-     * If [.onExplainRequestReason] is called, this method will not be called in the same request time.
+     * 当权限需要转发到设置以允许时调用
+     * 通常，用户拒绝您的请求并选中“不再询问”会调用此方法
+     * 记住 [onExplainRequestReason] 总是在这个方法之前
+     * 如果调用 [onExplainRequestReason] 则不会在同一请求时间内调用该方法
      *
-     * @param callback Callback with permissions denied and checked never ask again by user.
-     * @return PermissionBuilder itself.
+     * @param callback 权限被拒绝和检查的回调永远不会被用户再次询问
+     * @return PermissionBuilder 本身
      */
     fun onForwardToSettings(callback: ForwardToSettingsCallback?): PermissionBuilder {
         forwardToSettingsCallback = callback
@@ -250,10 +251,10 @@ class PermissionBuilder(
     }
 
     /**
-     * If you need to show request permission rationale, chain this method in your request syntax.
-     * [.onExplainRequestReason] will be called before permission request.
+     * 如果您需要显示请求许可理由 请在您的请求语法中链接此方法
+     * [onExplainRequestReason] 将在权限请求之前调用
      *
-     * @return PermissionBuilder itself.
+     * @return PermissionBuilder 本身
      */
     fun explainReasonBeforeRequest(): PermissionBuilder {
         explainReasonBeforeRequest = true
@@ -262,8 +263,8 @@ class PermissionBuilder(
 
     /**
      * 将色调颜色设置为默认的基本原理对话框。
-     * @param lightColor - 用于浅色主题。 0xAARRGGBB 形式的颜色值。不要传递资源 ID。要从资源 ID 中获取颜色值，请调用 getColor
-     * @param darkColor - 用于深色主题。 0xAARRGGBB 形式的颜色值。不要传递资源 ID。要从资源 ID 中获取颜色值，请调用 getColor
+     * @param lightColor 用于浅色主题 0xAARRGGBB 形式的颜色值 不要传递资源 ID, 要从资源 ID 中获取颜色值 请调用 getColor
+     * @param darkColor  用于深色主题 0xAARRGGBB 形式的颜色值 不要传递资源 ID, 要从资源 ID 中获取颜色值 请调用 getColor
      * @return PermissionBuilder 本身
      */
     fun setDialogTintColor(lightColor: Int, darkColor: Int): PermissionBuilder {
@@ -282,17 +283,15 @@ class PermissionBuilder(
     }
 
     /**
-     * This method is internal, and should not be called by developer.
+     * 此方法是内部的，不应由开发人员调用
+     * 向用户显示一个对话框并解释为什么需要这些权限
      *
-     *
-     * Show a dialog to user and  explain why these permissions are necessary.
-     *
-     * @param chainTask              Instance of current task.
-     * @param showReasonOrGoSettings Indicates should show explain reason or forward to Settings.
-     * @param permissions            Permissions to request again.
-     * @param message                Message that explain to user why these permissions are necessary.
-     * @param positiveText           Positive text on the positive button to request again.
-     * @param negativeText           Negative text on the negative button. Maybe null if this dialog should not be canceled.
+     * @param chainTask              当前任务的实例
+     * @param showReasonOrGoSettings 表示应该显示解释原因或转发到设置
+     * @param permissions            再次请求的权限
+     * @param message                向用户解释为什么需要这些权限的消息
+     * @param positiveText           正面按钮上的正面文本以再次请求
+     * @param negativeText           否定按钮上的否定文本。如果不应取消此对话框，则可能为 null
      */
     fun showHandlePermissionDialog(
         chainTask: ChainTask,
@@ -417,137 +416,138 @@ class PermissionBuilder(
     }
 
     /**
-     * Request ACCESS_BACKGROUND_LOCATION permission at once in the fragment.
+     * 在 Fragment 中立即请求 ACCESS_BACKGROUND_LOCATION 权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestAccessBackgroundLocationPermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestAccessBackgroundLocationPermissionNow(this, chainTask)
     }
 
     /**
-     * Request SYSTEM_ALERT_WINDOW permission at once in the fragment.
+     * 在 Fragment 中立即请求 SYSTEM_ALERT_WINDOW 权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestSystemAlertWindowPermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestSystemAlertWindowPermissionNow(this, chainTask)
     }
 
     /**
-     * Request WRITE_SETTINGS permission at once in the fragment.
+     * 在 Fragment 中立即请求 WRITE_SETTINGS 权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestWriteSettingsPermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestWriteSettingsPermissionNow(this, chainTask)
     }
 
     /**
-     * Request MANAGE_EXTERNAL_STORAGE permission at once in the fragment.
+     * 在 Fragment 中立即请求 MANAGE_EXTERNAL_STORAGE 权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestManageExternalStoragePermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestManageExternalStoragePermissionNow(this, chainTask)
     }
 
     /**
-     * Request REQUEST_INSTALL_PACKAGES permission at once in the fragment.
+     * 在片段中立即请求 REQUEST_INSTALL_PACKAGES 权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestInstallPackagePermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestInstallPackagesPermissionNow(this, chainTask)
     }
 
     /**
-     * Request notification permission at once in the fragment.
+     * 在片段中立即请求通知权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestNotificationPermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestNotificationPermissionNow(this, chainTask)
     }
 
     /**
-     * Request BODY_SENSORS_BACKGROUND permission at once in the fragment.
+     * 在 Fragment 中立即请求 BODY_SENSORS_BACKGROUND 权限
      *
-     * @param chainTask Instance of current task.
+     * @param chainTask 当前任务的实例
      */
     fun requestBodySensorsBackgroundPermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestBodySensorsBackgroundPermissionNow(this, chainTask)
     }
 
     /**
-     * Should we request ACCESS_BACKGROUND_LOCATION permission or not.
+     * 我们是否应该请求 ACCESS_BACKGROUND_LOCATION 权限
      *
-     * @return True if specialPermissions contains ACCESS_BACKGROUND_LOCATION permission, false otherwise.
+     * @return 如果 specialPermissions 包含 ACCESS_BACKGROUND_LOCATION 权限则为真 否则为假
      */
     fun shouldRequestBackgroundLocationPermission(): Boolean {
         return specialPermissions.contains(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
     }
 
     /**
-     * Should we request SYSTEM_ALERT_WINDOW permission or not.
+     * 我们是否应该请求 SYSTEM_ALERT_WINDOW 权限
      *
-     * @return True if specialPermissions contains SYSTEM_ALERT_WINDOW permission, false otherwise.
+     * @return 如果 specialPermissions 包含 SYSTEM_ALERT_WINDOW 权限 则为真 否则为假
      */
     fun shouldRequestSystemAlertWindowPermission(): Boolean {
         return specialPermissions.contains(Manifest.permission.SYSTEM_ALERT_WINDOW)
     }
 
     /**
-     * Should we request WRITE_SETTINGS permission or not.
+     * 我们是否应该请求 WRITE_SETTINGS 权限
      *
-     * @return True if specialPermissions contains WRITE_SETTINGS permission, false otherwise.
+     * @return 如果 specialPermissions 包含 WRITE_SETTINGS 权限 则为真 否则为假
      */
     fun shouldRequestWriteSettingsPermission(): Boolean {
         return specialPermissions.contains(Manifest.permission.WRITE_SETTINGS)
     }
 
     /**
-     * Should we request MANAGE_EXTERNAL_STORAGE permission or not.
+     * 我们是否应该请求 MANAGE_EXTERNAL_STORAGE 权限
      *
-     * @return True if specialPermissions contains MANAGE_EXTERNAL_STORAGE permission, false otherwise.
+     * @return 如果 specialPermissions 包含 MANAGE_EXTERNAL_STORAGE 权限 则为真 否则为假
      */
     fun shouldRequestManageExternalStoragePermission(): Boolean {
         return specialPermissions.contains(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
     }
 
     /**
-     * Should we request REQUEST_INSTALL_PACKAGES permission or not.
+     * 我们是否应该请求 REQUEST_INSTALL_PACKAGES 权限
      *
-     * @return True if specialPermissions contains REQUEST_INSTALL_PACKAGES permission, false otherwise.
+     * @return 如果 specialPermissions 包含 REQUEST_INSTALL_PACKAGES 权限 则为真 否则为假
      */
     fun shouldRequestInstallPackagesPermission(): Boolean {
         return specialPermissions.contains(RequestInstallPackagesPermission.REQUEST_INSTALL_PACKAGES)
     }
 
     /**
-     * Should we request the specific special permission or not.
+     * 我们是否应该请求特定的特别许可
      *
-     * @return True if specialPermissions contains POST_NOTIFICATIONS permission, false otherwise.
+     * @return 如果 specialPermissions 包含 POST_NOTIFICATIONS 权限则为真 否则为假
      */
     fun shouldRequestNotificationPermission(): Boolean {
         return specialPermissions.contains(PermissionX.permission.POST_NOTIFICATIONS)
     }
 
     /**
-     * Should we request the specific special permission or not.
+     * 我们是否应该请求特定的特别许可
      *
-     * @return True if specialPermissions contains BODY_SENSORS_BACKGROUND permission, false otherwise.
+     * @return 如果 specialPermissions 包含 BODY_SENSORS_BACKGROUND 权限 则为真 否则为假
      */
     fun shouldRequestBodySensorsBackgroundPermission(): Boolean {
         return specialPermissions.contains(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
     }
 
     private fun startRequest() {
-        // Lock the orientation when requesting permissions, or callback maybe missed due to
-        // activity destroyed.
+        // 请求权限时锁定方向 否则可能由于活动被破坏而错过回调
         lockOrientation()
 
-        // Build the request chain. RequestNormalPermissions runs first, then RequestBackgroundLocationPermission runs.
+        // 构建请求链
+        // RequestNormalPermissions 首先运行
+        // 然后 Request Background Location Permission 运行
         val requestChain = RequestChain()
         requestChain.addTaskToChain(RequestNormalPermissions(this))
         requestChain.addTaskToChain(RequestBackgroundLocationPermission(this))
@@ -561,7 +561,7 @@ class PermissionBuilder(
     }
 
     /**
-     * Remove the InvisibleFragment from current FragmentManager.
+     * 从当前 FragmentManager 中移除 InvisibleFragment
      */
     private fun removeInvisibleFragment() {
         val existedFragment = fragmentManager.findFragmentByTag(FRAGMENT_TAG)
@@ -571,9 +571,9 @@ class PermissionBuilder(
     }
 
     /**
-     * Restore the screen orientation. Activity just behave as before locked.
-     * Android O has bug that only full screen activity can request orientation,
-     * so we need to exclude Android O.
+     * 恢复屏幕方向
+     * 活动只是像以前一样被锁定
+     * Android O 存在只有全屏 Activity 才能请求方向的 bug 所以我们需要排除 Android O
      */
     private fun restoreOrientation() {
         if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
@@ -582,9 +582,9 @@ class PermissionBuilder(
     }
 
     /**
-     * Lock the screen orientation. Activity couldn't rotate with sensor.
-     * Android O has bug that only full screen activity can request orientation,
-     * so we need to exclude Android O.
+     * 锁定屏幕方向
+     * 活动无法随传感器旋转
+     * Android O 存在只有全屏 Activity 才能请求方向的 bug 所以我们需要排除 Android O
      */
     @SuppressLint("SourceLockedOrientationActivity")
     private fun lockOrientation() {
@@ -600,9 +600,9 @@ class PermissionBuilder(
     }
 
     /**
-     * Go to your app's Settings page to let user turn on the necessary permissions.
+     * 转到您应用的设置页面 让用户打开必要的权限
      *
-     * @param permissions Permissions which are necessary.
+     * @param permissions 必要的权限
      */
     private fun forwardToSettings(permissions: List<String>) {
         forwardPermissions.clear()
@@ -611,15 +611,15 @@ class PermissionBuilder(
     }
 
     internal fun endRequest() {
-        // Remove the InvisibleFragment from current Activity after request finished.
+        // 请求完成后从当前 Activity 中移除 Invisible Fragment
         removeInvisibleFragment()
-        // Restore the orientation after request finished since it's locked before.
+        // 请求完成后恢复方向 因为它之前被锁定
         restoreOrientation()
     }
 
     companion object {
         /**
-         * TAG of InvisibleFragment to find and create.
+         * 要查找和创建的 InvisibleFragment 的 TAG
          */
         private const val FRAGMENT_TAG = "InvisibleFragment"
     }
@@ -628,9 +628,13 @@ class PermissionBuilder(
         if (fragmentActivity != null) {
             activity = fragmentActivity
         }
-        // activity and fragment must not be null at same time
+        // 活动和片段不能同时为空
         if (fragmentActivity == null && fragment != null) {
             activity = fragment.requireActivity()
+        }
+        // 同时为空的时候抛出异常
+        if (activity == null && fragment == null){
+            throw IllegalAccessException()
         }
         this.fragment = fragment
         this.normalPermissions = normalPermissions

@@ -20,27 +20,22 @@ import com.permissionx.guolindev.dialog.RationaleDialog
 import com.permissionx.guolindev.dialog.RationaleDialogFragment
 
 /**
- * Provide specific scopes for
+ * 为
  * [com.permissionx.guolindev.callback.ExplainReasonCallback]
- * and
- * [com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam] to give it specific functions to call.
- * @author guolin
- * @since 2020/3/18
+ * 和
+ * [com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam]
+ * 提供特定的范围 以赋予其特定的调用函数
  */
 class ExplainScope internal constructor(
     private val pb: PermissionBuilder,
     private val chainTask: ChainTask
 ) {
     /**
-     * Show a rationale dialog to explain to user why you need these permissions.
-     * @param permissions
-     * Permissions that to request.
-     * @param message
-     * Message that show to user.
-     * @param positiveText
-     * Text on the positive button. When user click, PermissionX will request permissions again.
-     * @param negativeText
-     * Text on the negative button. When user click, PermissionX will finish request.
+     * 显示一个基本原理对话框，向用户解释您为什么需要这些权限
+     * @param permissions   请求的权限
+     * @param message       显示给用户的消息
+     * @param positiveText  正面按钮上的文本 当用户单击时 PermissionX 将再次请求权限
+     * @param negativeText  否定按钮上的文本 当用户点击时 PermissionX 将完成请求
      */
     @JvmOverloads
     fun showRequestReasonDialog(permissions: List<String>, message: String, positiveText: String, negativeText: String? = null) {
@@ -48,18 +43,16 @@ class ExplainScope internal constructor(
     }
 
     /**
-     * Show a rationale dialog to explain to user why you need these permissions.
-     * @param dialog
-     * Dialog to explain to user why these permissions are necessary.
+     * 显示一个基本原理对话框，向用户解释您为什么需要这些权限
+     * @param dialog RationaleDialog 向用户解释为什么需要这些权限的对话框
      */
     fun showRequestReasonDialog(dialog: RationaleDialog) {
         pb.showHandlePermissionDialog(chainTask, true, dialog)
     }
 
     /**
-     * Show a rationale dialog to explain to user why you need these permissions.
-     * @param dialogFragment
-     * DialogFragment to explain to user why these permissions are necessary.
+     * 显示一个基本原理对话框，向用户解释您为什么需要这些权限。
+     * @param dialogFragment DialogFragment 向用户解释为什么需要这些权限
      */
     fun showRequestReasonDialog(dialogFragment: RationaleDialogFragment) {
         pb.showHandlePermissionDialog(chainTask, true, dialogFragment)

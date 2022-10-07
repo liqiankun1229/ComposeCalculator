@@ -28,18 +28,19 @@ import java.util.*
  */
 internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTask {
     /**
-     * Point to the next task. When this task finish will run next task. If there's no next task, the request process end.
+     * 指向下一个任务 此任务完成后将运行下一个任务
+     * 如果没有下一个任务 则请求过程结束
      */
     @JvmField
     var next: ChainTask? = null
 
     /**
-     * Provide specific scopes for explainReasonCallback for specific functions to call.
+     * 为要调用的特定函数提供 explainReasonCallback 的特定范围
      */
     private var explainReasonScope = ExplainScope(pb, this)
 
     /**
-     * Provide specific scopes for forwardToSettingsCallback for specific functions to call.
+     * 为要调用的特定函数提供 forwardToSettingsCallback 的特定范围
      */
     private var forwardToSettingsScope = ForwardScope(pb, this)
 
@@ -51,9 +52,9 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
      * 结束任务
      */
     override fun finish() {
-        // If there's next task, then run it.
+        // 如果有下一个任务 则运行它
         next?.request() ?: run {
-            // If there's no next task, finish the request process and notify the result
+            // 如果没有下一个任务 结束请求过程并通知结果
             val deniedList: MutableList<String> = ArrayList()
             deniedList.addAll(pb.deniedPermissions)
             deniedList.addAll(pb.permanentDeniedPermissions)

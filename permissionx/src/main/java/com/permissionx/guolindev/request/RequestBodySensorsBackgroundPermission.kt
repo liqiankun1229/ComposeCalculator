@@ -28,15 +28,15 @@ internal class RequestBodySensorsBackgroundPermission internal constructor(permi
     override fun request() {
         if (pb.shouldRequestBodySensorsBackgroundPermission()) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                // If app runs under Android T, there's no BODY_SENSORS_BACKGROUND permissions.
-                // We remove it from request list, but will append it to the request callback as denied permission.
+                // 如果应用在 Android T 下运行 则没有 BODY_SENSORS_BACKGROUND 权限
+                // 我们将其从请求列表中删除 但会将其作为拒绝权限附加到请求回调中
                 pb.specialPermissions.remove(BODY_SENSORS_BACKGROUND)
                 pb.permissionsWontRequest.add(BODY_SENSORS_BACKGROUND)
                 finish()
                 return
             }
             if (PermissionX.isGranted(pb.activity, BODY_SENSORS_BACKGROUND)) {
-                // BODY_SENSORS_BACKGROUND has already granted, we can finish this task now.
+                // BODY_SENSORS_BACKGROUND 已经授权了 我们现在可以完成这个任务了
                 finish()
                 return
             }
@@ -50,29 +50,29 @@ internal class RequestBodySensorsBackgroundPermission internal constructor(permi
                     val requestList = mutableListOf(BODY_SENSORS_BACKGROUND)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                        pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                     }
                 } else {
-                    // No implementation of explainReasonCallback, so we have to request BODY_SENSORS_BACKGROUND without explanation.
+                    // 没有执行explainReasonCallback 所以我们必须请求 BODY_SENSORS_BACKGROUND 而不做解释
                     requestAgain(emptyList())
                 }
                 return
             }
         }
-        // Shouldn't request BODY_SENSORS_BACKGROUND at this time, so we call finish() to finish this task.
+        // 此时不应该请求 BODY_SENSORS_BACKGROUND 所以我们调用 finish() 来完成这个任务
         finish()
     }
 
     override fun requestAgain(permissions: List<String>) {
-        // Don't care what the permissions param is, always request BODY_SENSORS_BACKGROUND.
+        // 不要关心权限参数是什么 总是请求 BODY_SENSORS_BACKGROUND
         pb.requestBodySensorsBackgroundPermissionNow(this)
     }
 
     companion object {
         /**
-         * Define the const to compat with system lower than T.
+         * 定义 const 以与低于 T 的系统兼容
          */
         const val BODY_SENSORS_BACKGROUND = "android.permission.BODY_SENSORS_BACKGROUND"
     }

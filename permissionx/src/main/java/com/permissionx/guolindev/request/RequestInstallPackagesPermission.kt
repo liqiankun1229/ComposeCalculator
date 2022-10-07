@@ -37,30 +37,31 @@ internal class RequestInstallPackagesPermission internal constructor(permissionB
             if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                 val requestList = mutableListOf(Manifest.permission.REQUEST_INSTALL_PACKAGES)
                 if (pb.explainReasonCallbackWithBeforeParam != null) {
-                    // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                    // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                 } else {
-                    pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                    pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                 }
             } else {
-                // No implementation of explainReasonCallback, we can't request
-                // REQUEST_INSTALL_PACKAGES permission at this time, because user won't understand why.
+                // 没有执行explainReasonCallback
+                // 此时我们不能请求 REQUEST_INSTALL_PACKAGES 权限 因为用户不明白为什么
                 finish()
             }
         } else {
-            // shouldn't request REQUEST_INSTALL_PACKAGES permission at this time, so we call finish() to finish this task.
+            // 此时不应请求 REQUEST_INSTALL_PACKAGES 权限
+            // 因此我们调用 finish() 来结束此任务
             finish()
         }
     }
 
     override fun requestAgain(permissions: List<String>) {
-        // don't care what the permissions param is, always request REQUEST_INSTALL_PACKAGES permission.
+        // 不在乎权限参数是什么 始终请求 REQUEST_INSTALL_PACKAGES 权限
         pb.requestInstallPackagePermissionNow(this)
     }
 
     companion object {
         /**
-         * Define the const to compat with system lower than M.
+         * 定义 const 以与低于 M 的系统兼容
          */
         const val REQUEST_INSTALL_PACKAGES = "android.permission.REQUEST_INSTALL_PACKAGES"
     }

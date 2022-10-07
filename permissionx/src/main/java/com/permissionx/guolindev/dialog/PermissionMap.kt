@@ -26,7 +26,7 @@ import com.permissionx.guolindev.request.RequestInstallPackagesPermission
 import com.permissionx.guolindev.request.RequestManageExternalStoragePermission
 
 /**
- * Maintains all the special permissions that we need to handle by special case.
+ * 维护我们需要通过特殊情况处理的所有特殊权限
  */
 val allSpecialPermissions = setOf(
     RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION,
@@ -39,10 +39,9 @@ val allSpecialPermissions = setOf(
 )
 
 /**
- * Based on this link https://developer.android.com/about/versions/10/privacy/changes#permission-groups-removed
- * Since Android Q, we can not get the permission group name by permission name anymore.
- * So we need to keep a track of relationship between permissions and permission groups on every
- * Android release since Android Q.
+ * 基于此链接 https://developer.android.com/about/versions/10/privacy/changes#permission-groups-removed
+ * 从 Android Q 开始 我们无法再通过权限名称获取权限组名称
+ * 因此 我们需要跟踪自 Android Q 以来每个 Android 版本的权限和权限组之间的关系
  */
 @TargetApi(Build.VERSION_CODES.Q)
 val permissionMapOnQ = mapOf(
@@ -79,7 +78,7 @@ val permissionMapOnQ = mapOf(
 )
 
 /**
- * Thankfully Android R has no permission added or removed than Android Q.
+ * 值得庆幸的是 Android R 相对 Android Q 没有添加或删除任何权限
  */
 @TargetApi(Build.VERSION_CODES.R)
 val permissionMapOnR = mapOf(
@@ -89,7 +88,7 @@ val permissionMapOnR = mapOf(
 }.toMap()
 
 /**
- * Android S added 3 bluetooth related runtime permissions.
+ * Android S 添加了 3 个蓝牙相关的运行时权限
  */
 @TargetApi(Build.VERSION_CODES.S)
 val permissionMapOnS = mapOf(
@@ -101,7 +100,7 @@ val permissionMapOnS = mapOf(
 }.toMap()
 
 /**
- * Android S added 3 bluetooth related runtime permissions.
+ * Android T 添加了 3 个读取存储运行时权限 1个通知运行时权限  1个 wifi 运行时权限 1个 身体传感器运行时权限
  */
 @TargetApi(Build.VERSION_CODES.TIRAMISU)
 val permissionMapOnT = mapOf(

@@ -20,18 +20,18 @@ package com.permissionx.guolindev.request
  */
 class RequestChain {
     /**
-     * Holds the first task of request process. Permissions request begins here.
+     * 持有请求过程的第一个任务 权限请求从这里开始
      */
     private var headTask: BaseTask? = null
 
     /**
-     * Holds the last task of request process. Permissions request ends here.
+     * 持有请求过程的最后一个任务 权限请求到此结束
      */
     private var tailTask: BaseTask? = null
 
     /**
-     * Add a task into task chain.
-     * @param task  task to add.
+     * 将任务添加到任务链中
+     * @param task  要添加的任务
      */
     internal fun addTaskToChain(task: BaseTask) {
         if (headTask == null) {
@@ -43,7 +43,7 @@ class RequestChain {
     }
 
     /**
-     * Run this task chain from the first task.
+     * 从第一个任务运行此任务链
      */
     internal fun runTask() {
         headTask?.request()

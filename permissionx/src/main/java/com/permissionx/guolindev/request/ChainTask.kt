@@ -13,43 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.permissionx.guolindev.request
 
-package com.permissionx.guolindev.request;
-
-import java.util.List;
+import com.permissionx.guolindev.request.ExplainScope
+import com.permissionx.guolindev.request.ForwardScope
 
 /**
  * 定义一个任务接口来请求权限
  * 并非一次可以请求所有权限
  * 有些权限需要单独申请 所以每个权限请求都需要实现这个接口，并在其实现中做请求逻辑
  */
-public interface ChainTask {
-
+interface ChainTask {
     /**
      * 获取用于显示 RequestReasonDialog 的 ExplainScope。
      * @return ExplainScope 的实例
      */
-    ExplainScope getExplainScope();
+    fun getExplainScope(): ExplainScope
 
     /**
      * 获取 ForwardScope 以显示 ForwardToSettingsDialog
      * @return ForwardScope 实例
      */
-    ForwardScope getForwardScope();
+    fun getForwardScope(): ForwardScope
 
     /**
      * 做请求逻辑
      */
-    void request();
+    fun request()
 
     /**
      * 当用户被拒绝时再次请求权限
      * @param permissions - 再次请求的权限
      */
-    void requestAgain(List<String> permissions);
+    fun requestAgain(permissions: List<String>)
 
     /**
      * 完成此任务并通知请求结果
      */
-    void finish();
+    fun finish()
 }

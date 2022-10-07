@@ -45,12 +45,12 @@ class InvisibleFragment : Fragment() {
     private lateinit var pb: PermissionBuilder
 
     /**
-     * Instance of current task.
+     * 当前任务(权限请求)的实例
      */
     private lateinit var task: ChainTask
 
     /**
-     * Used to get the result for request multiple permissions.
+     * 用于获取请求多个权限的结果
      */
     private val requestNormalPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { grantResults ->
@@ -60,7 +60,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for ACCESS_BACKGROUND_LOCATION permission.
+     * 用于获取后台定位 ACCESS_BACKGROUND_LOCATION 权限的结果
      */
     private val requestBackgroundLocationLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -70,7 +70,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for SYSTEM_ALERT_WINDOW permission.
+     * 用于获取系统弹窗 SYSTEM_ALERT_WINDOW 权限的结果
      */
     private val requestSystemAlertWindowLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -80,7 +80,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for WRITE_SETTINGS permission.
+     * 用于获取修改设置 WRITE_SETTINGS 权限的结果
      */
     private val requestWriteSettingsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -90,7 +90,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for MANAGE_EXTERNAL_STORAGE permission.
+     * 用于获取管理外部存储 MANAGE_EXTERNAL_STORAGE 权限的结果
      */
     private val requestManageExternalStorageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -100,7 +100,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for REQUEST_INSTALL_PACKAGES permission.
+     * 用于获取安装应用 REQUEST_INSTALL_PACKAGES 权限的结果
      */
     private val requestInstallPackagesLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -110,7 +110,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for notification permission.
+     * 用于获取通知权限的结果
      */
     private val requestNotificationLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -120,7 +120,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result for BODY_SENSORS_BACKGROUND permission.
+     * 用于获取身体传感器 BODY_SENSORS_BACKGROUND 权限的结果
      */
     private val requestBodySensorsBackgroundLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -130,7 +130,7 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Used to get the result when user switch back from Settings.
+     * 用于在用户从设置切换回来时获取结果
      */
     private val forwardToSettingsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -140,12 +140,11 @@ class InvisibleFragment : Fragment() {
         }
 
     /**
-     * Request permissions at once by calling [Fragment.requestPermissions],
-     * and handle request result in ActivityCompat.OnRequestPermissionsResultCallback.
-     *
-     * @param permissionBuilder The instance of PermissionBuilder.
-     * @param permissions       Permissions that you want to request.
-     * @param chainTask         Instance of current task.
+     * 通过调用Fragment.requestPermissions一次请求权限
+     * 并在 ActivityCompat.OnRequestPermissionsResultCallback 处理请求结果
+     * @param permissionBuilder - PermissionBuilder 的实例
+     * @param permissions - 您要请求的权限
+     * @param chainTask - 当前任务的实例
      */
     fun requestNow(
         permissionBuilder: PermissionBuilder,
@@ -158,11 +157,11 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request ACCESS_BACKGROUND_LOCATION at once by calling [Fragment.requestPermissions],
-     * and handle request result in ActivityCompat.OnRequestPermissionsResultCallback.
+     * 通过调用 [Fragment.requestPermissions] 立即请求 ACCESS_BACKGROUND_LOCATION
+     * 并在 ActivityCompat.OnRequestPermissionsResultCallback 中处理请求结果
      *
-     * @param permissionBuilder The instance of PermissionBuilder.
-     * @param chainTask         Instance of current task.
+     * @param permissionBuilder PermissionBuilder 的实例
+     * @param chainTask         当前任务的实例
      */
     fun requestAccessBackgroundLocationPermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -174,8 +173,8 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request SYSTEM_ALERT_WINDOW permission. On Android M and above, it's request by
-     * Settings.ACTION_MANAGE_OVERLAY_PERMISSION with Intent.
+     * 请求系统弹窗(SYSTEM_ALERT_WINDOW) 权限
+     * 在 Android M 及更高版本上 它是由带有 Settings.ACTION_MANAGE_OVERLAY_PERMISSION 的 Intent 请求的
      */
     fun requestSystemAlertWindowPermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -193,8 +192,8 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request WRITE_SETTINGS permission. On Android M and above, it's request by
-     * Settings.ACTION_MANAGE_WRITE_SETTINGS with Intent.
+     * 请求修改设置(WRITE_SETTINGS) 权限
+     * 在 Android M 及更高版本上 它是由带有 Settings.ACTION_MANAGE_WRITE_SETTINGS 的 Intent 请求的
      */
     fun requestWriteSettingsPermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -212,8 +211,8 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request MANAGE_EXTERNAL_STORAGE permission. On Android R and above, it's request by
-     * Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION with Intent.
+     * 请求管理外部存储(MANAGE_EXTERNAL_STORAGE) 权限
+     * 在 Android R 及更高版本上 它是由带有 Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION 的 Intent 请求的
      */
     @SuppressLint("QueryPermissionsNeeded")
     fun requestManageExternalStoragePermissionNow(
@@ -235,8 +234,8 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request REQUEST_INSTALL_PACKAGES permission. On Android O and above, it's request by
-     * Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES with Intent.
+     * 请求安装应用(REQUEST_INSTALL_PACKAGES) 权限
+     * 在 Android O 及更高版本上 它是由带有 Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES 的 Intent 请求的
      */
     fun requestInstallPackagesPermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -254,8 +253,8 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request notification permission. On Android O and above, it's request by
-     * Settings.ACTION_APP_NOTIFICATION_SETTINGS with Intent.
+     * 请求通知权限
+     * 在 Android O 及更高版本上 它是由带有 Settings.ACTION_APP_NOTIFICATION_SETTINGS 的 Intent 请求的
      */
     fun requestNotificationPermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -273,11 +272,11 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Request ACCESS_BACKGROUND_LOCATION at once by calling [Fragment.requestPermissions],
-     * and handle request result in ActivityCompat.OnRequestPermissionsResultCallback.
+     * 通过调用 [Fragment.requestPermissions] 立即请求 ACCESS_BACKGROUND_LOCATION
+     * 并在 ActivityCompat.OnRequestPermissionsResultCallback 中处理请求结果
      *
-     * @param permissionBuilder The instance of PermissionBuilder.
-     * @param chainTask         Instance of current task.
+     * @param permissionBuilder PermissionBuilder 的实例
+     * @param chainTask         当前任务的实例
      */
     fun requestBodySensorsBackgroundPermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -289,7 +288,8 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Go to your app's Settings page to let user turn on the necessary permissions.
+     * 转到您应用的设置页面
+     * 让用户打开必要的权限
      */
     fun forwardToSettings() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -298,10 +298,13 @@ class InvisibleFragment : Fragment() {
         forwardToSettingsLauncher.launch(intent)
     }
 
+    /**
+     * 销毁 检查是否 GC 回收
+     */
     override fun onDestroy() {
         super.onDestroy()
         if (checkForGC()) {
-            // Dismiss the showing dialog when InvisibleFragment destroyed for avoiding window leak problem.
+            // 当 Invisible Fragment 被回收时 关闭显示对话框 以避免窗口内存泄漏问题
             pb.currentDialog?.let {
                 if (it.isShowing) {
                     it.dismiss()
@@ -311,7 +314,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of normal permissions request.
+     * 处理正常权限请求的结果
      */
     private fun onRequestNormalPermissionsResult(grantResults: Map<String, Boolean>) {
         if (checkForGC()) {
@@ -366,11 +369,11 @@ class InvisibleFragment : Fragment() {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                         pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                            task.explainScope, ArrayList(pb.deniedPermissions), false
+                            task.getExplainScope(), ArrayList(pb.deniedPermissions), false
                         )
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(
-                            task.explainScope,
+                            task.getExplainScope(),
                             ArrayList(pb.deniedPermissions)
                         )
                     }
@@ -381,7 +384,7 @@ class InvisibleFragment : Fragment() {
                         false // shouldn't because ForwardToSettingsCallback handles it
                     pb.tempPermanentDeniedPermissions.clear() // no need to store them anymore once onForwardToSettings callback.
                     pb.forwardToSettingsCallback!!.onForwardToSettings(
-                        task.forwardScope,
+                        task.getForwardScope(),
                         ArrayList(pb.permanentDeniedPermissions)
                     )
                 }
@@ -401,7 +404,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of ACCESS_BACKGROUND_LOCATION permission request.
+     * 处理 后台定位(ACCESS_BACKGROUND_LOCATION) 权限请求的结果
      */
     private fun onRequestBackgroundLocationPermissionResult(granted: Boolean) {
         if (checkForGC()) {
@@ -425,11 +428,11 @@ class InvisibleFragment : Fragment() {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
                             // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                                task.explainScope, permissionsToExplain, false
+                                task.getExplainScope(), permissionsToExplain, false
                             )
                         } else {
                             pb.explainReasonCallback!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 permissionsToExplain
                             )
                         }
@@ -439,7 +442,7 @@ class InvisibleFragment : Fragment() {
                         val permissionsToForward: MutableList<String> = ArrayList()
                         permissionsToForward.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                         pb.forwardToSettingsCallback!!.onForwardToSettings(
-                            task.forwardScope,
+                            task.getForwardScope(),
                             permissionsToForward
                         )
                     }
@@ -456,7 +459,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of SYSTEM_ALERT_WINDOW permission request.
+     * 处理 系统弹窗(SYSTEM_ALERT_WINDOW) 权限请求的结果
      */
     private fun onRequestSystemAlertWindowPermissionResult() {
         if (checkForGC()) {
@@ -467,13 +470,13 @@ class InvisibleFragment : Fragment() {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
                         // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                         pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                            task.explainScope,
+                            task.getExplainScope(),
                             listOf(Manifest.permission.SYSTEM_ALERT_WINDOW),
                             false
                         )
                     } else {
                         pb.explainReasonCallback!!.onExplainReason(
-                            task.explainScope, listOf(Manifest.permission.SYSTEM_ALERT_WINDOW)
+                            task.getExplainScope(), listOf(Manifest.permission.SYSTEM_ALERT_WINDOW)
                         )
                     }
                 }
@@ -484,7 +487,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of WRITE_SETTINGS permission request.
+     * 处理 WRITE_SETTINGS 权限请求的结果
      */
     private fun onRequestWriteSettingsPermissionResult() {
         if (checkForGC()) {
@@ -496,11 +499,11 @@ class InvisibleFragment : Fragment() {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
                             // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                                task.explainScope, listOf(Manifest.permission.WRITE_SETTINGS), false
+                                task.getExplainScope(), listOf(Manifest.permission.WRITE_SETTINGS), false
                             )
                         } else {
                             pb.explainReasonCallback!!.onExplainReason(
-                                task.explainScope, listOf(Manifest.permission.WRITE_SETTINGS)
+                                task.getExplainScope(), listOf(Manifest.permission.WRITE_SETTINGS)
                             )
                         }
                     }
@@ -524,13 +527,13 @@ class InvisibleFragment : Fragment() {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
                             // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 listOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE),
                                 false
                             )
                         } else {
                             pb.explainReasonCallback!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 listOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE)
                             )
                         }
@@ -555,13 +558,13 @@ class InvisibleFragment : Fragment() {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
                             // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 listOf(Manifest.permission.REQUEST_INSTALL_PACKAGES),
                                 false
                             )
                         } else {
                             pb.explainReasonCallback!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 listOf(Manifest.permission.REQUEST_INSTALL_PACKAGES)
                             )
                         }
@@ -586,13 +589,13 @@ class InvisibleFragment : Fragment() {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
                             // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 listOf(PermissionX.permission.POST_NOTIFICATIONS),
                                 false
                             )
                         } else {
                             pb.explainReasonCallback!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 listOf(PermissionX.permission.POST_NOTIFICATIONS)
                             )
                         }
@@ -629,11 +632,11 @@ class InvisibleFragment : Fragment() {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
                             // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
-                                task.explainScope, permissionsToExplain, false
+                                task.getExplainScope(), permissionsToExplain, false
                             )
                         } else {
                             pb.explainReasonCallback!!.onExplainReason(
-                                task.explainScope,
+                                task.getExplainScope(),
                                 permissionsToExplain
                             )
                         }
@@ -643,7 +646,7 @@ class InvisibleFragment : Fragment() {
                         val permissionsToForward: MutableList<String> = ArrayList()
                         permissionsToForward.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
                         pb.forwardToSettingsCallback!!.onForwardToSettings(
-                            task.forwardScope,
+                            task.getForwardScope(),
                             permissionsToForward
                         )
                     }
@@ -660,9 +663,9 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * On some phones, PermissionBuilder and ChainTask may become null under unpredictable occasions such as GC.
-     * They should not be null at this time, so we can do nothing in this case.
-     * @return PermissionBuilder and ChainTask are still alive or not. If not, we should not do any further logic.
+     * 在某些手机上，PermissionBuilder 和 ChainTask 在 GC 等不可预知的情况下可能会变为 null
+     * 此时它们不应为空，因此在这种情况下我们无能为力
+     * @return PermissionBuilder 和 ChainTask 是否仍然存在。如果不是，我们不应该做任何进一步的逻辑。
      */
     private fun checkForGC(): Boolean {
         if (!::pb.isInitialized || !::task.isInitialized) {

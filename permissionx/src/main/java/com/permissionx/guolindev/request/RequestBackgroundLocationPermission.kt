@@ -29,15 +29,15 @@ internal class RequestBackgroundLocationPermission internal constructor(permissi
     override fun request() {
         if (pb.shouldRequestBackgroundLocationPermission()) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-                // If app runs under Android Q, there's no ACCESS_BACKGROUND_LOCATION permissions.
-                // We remove it from request list, but will append it to the request callback as denied permission.
+                // 如果应用在 Android Q 下运行 则没有 ACCESS_BACKGROUND_LOCATION 权限
+                // 我们将其从请求列表中删除，但会将其作为拒绝权限附加到请求回调中。
                 pb.specialPermissions.remove(ACCESS_BACKGROUND_LOCATION)
                 pb.permissionsWontRequest.add(ACCESS_BACKGROUND_LOCATION)
                 finish()
                 return
             }
             if (PermissionX.isGranted(pb.activity, ACCESS_BACKGROUND_LOCATION)) {
-                // ACCESS_BACKGROUND_LOCATION has already granted, we can finish this task now.
+                // ACCESS_BACKGROUND_LOCATION 已经授权了，我们现在可以完成这个任务了
                 finish()
                 return
             }
@@ -47,30 +47,30 @@ internal class RequestBackgroundLocationPermission internal constructor(permissi
                 if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     val requestList = mutableListOf(ACCESS_BACKGROUND_LOCATION)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
-                        // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                        // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                        pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                     }
                 } else {
-                    // No implementation of explainReasonCallback, so we have to request ACCESS_BACKGROUND_LOCATION without explanation.
+                    // 没有实现explainReasonCallback 所以我们必须请求 ACCESS_BACKGROUND_LOCATION 而不做解释
                     requestAgain(emptyList())
                 }
                 return
             }
         }
-        // Shouldn't request ACCESS_BACKGROUND_LOCATION at this time, so we call finish() to finish this task.
+        // 此时不应该请求 ACCESS_BACKGROUND_LOCATION 所以我们调用 finish() 来结束这个任务
         finish()
     }
 
     override fun requestAgain(permissions: List<String>) {
-        // Don't care what the permissions param is, always request ACCESS_BACKGROUND_LOCATION.
+        // 不要关心权限参数是什么，总是请求 ACCESS_BACKGROUND_LOCATION
         pb.requestAccessBackgroundLocationPermissionNow(this)
     }
 
     companion object {
         /**
-         * Define the const to compat with system lower than Q.
+         * 定义 const 以与低于 Q 的系统兼容
          */
         const val ACCESS_BACKGROUND_LOCATION = "android.permission.ACCESS_BACKGROUND_LOCATION"
     }

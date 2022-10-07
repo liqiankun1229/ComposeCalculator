@@ -29,38 +29,39 @@ internal class RequestSystemAlertWindowPermission internal constructor(permissio
         if (pb.shouldRequestSystemAlertWindowPermission()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pb.targetSdkVersion >= Build.VERSION_CODES.M) {
                 if (Settings.canDrawOverlays(pb.activity)) {
-                    // SYSTEM_ALERT_WINDOW permission has already granted, we can finish this task now.
+                    // SYSTEM_ALERT_WINDOW 权限已经授予 我们现在可以完成这个任务了
                     finish()
                     return
                 }
                 if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     val requestList = mutableListOf(Manifest.permission.SYSTEM_ALERT_WINDOW)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
-                        // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                        // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                        pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                     }
                 } else {
-                    // No implementation of explainReasonCallback, we can't request
-                    // SYSTEM_ALERT_WINDOW permission at this time, because user won't understand why.
+                    // 没有执行 explainReasonCallback
+                    // 此时我们不能请求 SYSTEM_ALERT_WINDOW 权限 因为用户不明白为什么
                     finish()
                 }
             } else {
-                // SYSTEM_ALERT_WINDOW permission is automatically granted below Android M.
+                // SYSTEM_ALERT_WINDOW 权限在 Android M 以下自动授予
                 pb.grantedPermissions.add(Manifest.permission.SYSTEM_ALERT_WINDOW)
-                // At this time, SYSTEM_ALERT_WINDOW permission shouldn't be special treated anymore.
+                // 此时 SYSTEM_ALERT_WINDOW 权限不应再进行特殊处理
                 pb.specialPermissions.remove(Manifest.permission.SYSTEM_ALERT_WINDOW)
                 finish()
             }
         } else {
-            // shouldn't request SYSTEM_ALERT_WINDOW permission at this time, so we call finish() to finish this task.
+            // 此时不应该请求 SYSTEM_ALERT_WINDOW 权限
+            // 所以我们调用 finish() 来结束这个任务
             finish()
         }
     }
 
     override fun requestAgain(permissions: List<String>) {
-        // don't care what the permissions param is, always request SYSTEM_ALERT_WINDOW permission.
+        // 不在乎权限参数是什么 始终请求 SYSTEM_ALERT_WINDOW 权限
         pb.requestSystemAlertWindowPermissionNow(this)
     }
 }

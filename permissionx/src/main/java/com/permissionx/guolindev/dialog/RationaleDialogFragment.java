@@ -26,11 +26,9 @@ import androidx.fragment.app.DialogFragment;
 import java.util.List;
 
 /**
- *  Base DialogFragment class to inherits to display a rationale dialog and show user why you need the permissions that you asked.
- *  Your DialogFragment must have a positive button to proceed request and an optional negative button to cancel request. Override
- *  {@link RationaleDialogFragment#getPositiveButton()} and {@link RationaleDialogFragment#getNegativeButton()} to implement that.
- *  @author guolin
- *  @since 2020/9/1
+ *  继承的基本 DialogFragment 类以显示基本原理对话框并向用户展示您为什么需要您要求的权限
+ *  您的 DialogFragment 必须有一个肯定按钮来继续请求和一个可选的否定按钮来取消请求
+ *  覆盖 getPositiveButton() 和 getNegativeButton() 来实现它
  */
 public abstract class RationaleDialogFragment extends DialogFragment {
 
@@ -53,8 +51,8 @@ public abstract class RationaleDialogFragment extends DialogFragment {
     abstract public @Nullable View getNegativeButton();
 
     /**
-     * Provide permissions to request. These permissions should be the ones that shows on your RationaleDialogFragment.
-     * @return Permissions list to request.
+     * 提供请求的权限 这些权限应该是显示在您的 RationaleDialogFragment 上的权限
+     * @return 要请求的权限列表
      */
     abstract public @NonNull List<String> getPermissionsToRequest();
 

@@ -20,11 +20,8 @@ import com.permissionx.guolindev.dialog.RationaleDialog
 import com.permissionx.guolindev.dialog.RationaleDialogFragment
 
 /**
- * Provide specific scopes for
- * [com.permissionx.guolindev.callback.ForwardToSettingsCallback]
- * to give it specific functions to call.
- * @author guolin
- * @since 2020/3/18
+ * 为[com.permissionx.guolindev.callback.ForwardToSettingsCallback]提供特定的范围
+ * 以赋予它特定的功能来调用
  */
 class ForwardScope internal constructor(
     private val pb: PermissionBuilder,

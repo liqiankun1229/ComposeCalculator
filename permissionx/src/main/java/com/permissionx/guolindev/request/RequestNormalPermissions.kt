@@ -28,12 +28,12 @@ internal class RequestNormalPermissions internal constructor(permissionBuilder: 
         val requestList = ArrayList<String>()
         for (permission in pb.normalPermissions) {
             if (PermissionX.isGranted(pb.activity, permission)) {
-                pb.grantedPermissions.add(permission) // already granted
+                pb.grantedPermissions.add(permission) // 已经授予
             } else {
-                requestList.add(permission) // still need to request
+                requestList.add(permission) // 仍然需要请求
             }
         }
-        if (requestList.isEmpty()) { // all permissions are granted
+        if (requestList.isEmpty()) { // 授予所有权限
             finish()
             return
         }
@@ -41,21 +41,22 @@ internal class RequestNormalPermissions internal constructor(permissionBuilder: 
             pb.explainReasonBeforeRequest = false
             pb.deniedPermissions.addAll(requestList)
             if (pb.explainReasonCallbackWithBeforeParam != null) {
-                // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
             } else {
-                pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
             }
         } else {
-            // Do the request at once. Always request all permissions no matter they are already granted or not, in case user turn them off in Settings.
+            // 立即执行请求
+            // 无论是否已授予所有权限 请始终请求所有权限 以防用户在“设置”中将其关闭
             pb.requestNow(pb.normalPermissions, this)
         }
     }
 
     /**
-     * If permission is denied by user and [ExplainScope.showRequestReasonDialog] or [ForwardScope.showForwardToSettingsDialog] is called,
-     * when user clicked positive button, will call this method.
-     * @param permissions   permissions to request again.
+     * 如果权限被用户拒绝 并调用了[ExplainScope.showRequestReasonDialog]或[ForwardScope.showForwardToSettingsDialog]
+     * 当用户单击肯定按钮时 将调用此方法
+     * @param permissions   再次请求的权限
      */
     override fun requestAgain(permissions: List<String>) {
         val permissionsToRequestAgain: MutableSet<String> = HashSet(pb.grantedPermissions)

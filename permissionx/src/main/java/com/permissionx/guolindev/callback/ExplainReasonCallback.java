@@ -25,17 +25,14 @@ import java.util.List;
 
 /**
  * 回调 {@link PermissionBuilder#onExplainRequestReason(ExplainReasonCallback)} 方法
- *
- * @author guolin
- * @since 2020/6/7
  */
 public interface ExplainReasonCallback {
 
     /**
      * 解释为什么需要这些权限时调用
-     * @param scope Scope to show rationale dialog.
-     * @param deniedList
-     *          Permissions that you should explain.
+     *
+     * @param scope      显示基本原理对话框的范围
+     * @param deniedList 您应该解释的权限
      */
     void onExplainReason(@NonNull ExplainScope scope, @NonNull List<String> deniedList);
 

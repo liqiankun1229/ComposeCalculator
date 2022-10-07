@@ -54,17 +54,17 @@ class DefaultDialog(context: Context,
     }
 
     /**
-     * Provide the positive button instance to continue requesting.
-     * @return Positive button instance to continue requesting.
+     * 提供肯定按钮实例以继续请求
+     * @return 继续请求的正按钮实例
      */
     override fun getPositiveButton(): View {
         return binding.positiveBtn
     }
 
     /**
-     * Provide the negative button instance to abort requesting.
-     * This is alternative. If negativeText is null we just return null, means all these permissions are necessary.
-     * @return Negative button instance to abort requesting. Or null if all these permissions are necessary.
+     * 提供否定按钮实例以中止请求
+     * 这是另一种选择 如果 negativeText 为null 我们只返回 null，意味着所有这些权限都是必需的
+     * @return 用于中止请求的否定按钮实例 如果所有这些权限都是必需的 则为 null
      */
     override fun getNegativeButton(): View? {
         return negativeText?.let {
@@ -73,24 +73,24 @@ class DefaultDialog(context: Context,
     }
 
     /**
-     * Provide the permissions to request again.
-     * @return Permissions to request again.
+     * 提供再次请求的权限
+     * @return 再次请求的权限
      */
     override fun getPermissionsToRequest(): List<String> {
         return permissions
     }
 
     /**
-     * Check if the permission layout if empty.
-     * It is possible if all the permissions passed in are invalid permission such as a string named
-     * "hello world". We won't add these into permission layout.
+     * 检查权限布局是否为空
+     * 如果传入的所有权限都是无效权限 例如名为“hello world”的字符串
+     * 则有可能 我们不会将这些添加到权限布局中
      */
     internal fun isPermissionLayoutEmpty(): Boolean {
         return binding.permissionsLayout.childCount == 0
     }
 
     /**
-     * Setup text and text color on the dialog.
+     * 在对话框上设置文本和文本颜色
      */
     private fun setupText() {
         binding.messageText.text = message
@@ -115,8 +115,9 @@ class DefaultDialog(context: Context,
     }
 
     /**
-     * Add every permission that need to explain the request reason to the dialog.
-     * But we only need to add the permission group. So if there're two permissions belong to one group, only one item will be added to the dialog.
+     * 将需要解释请求原因的每个权限添加到对话框中
+     * 但是我们只需要添加权限组
+     * 因此 如果有两个权限属于一个组 则只会将一项添加到对话框中
      */
     private fun buildPermissionsLayout() {
         val tempSet = HashSet<String>()
@@ -137,8 +138,8 @@ class DefaultDialog(context: Context,
                 currentVersion == Build.VERSION_CODES.S -> permissionMapOnS[permission]
                 currentVersion == Build.VERSION_CODES.TIRAMISU -> permissionMapOnT[permission]
                 else -> {
-                    // If currentVersion is newer than the latest version we support, we just use
-                    // the latest version for temp. Will upgrade in the next release.
+                    // 如果 currentVersion 比我们支持的最新版本更新
+                    // 我们只需将最新版本用于 temp 将在下一个版本中升级
                     permissionMapOnT[permission]
                 }
             }
@@ -198,13 +199,13 @@ class DefaultDialog(context: Context,
     }
 
     /**
-     * Setup dialog window to show. Control the different window size in portrait and landscape mode.
+     * 要显示的设置对话框窗口 在纵向和横向模式下控制不同的窗口大小
      */
     private fun setupWindow() {
         val width = context.resources.displayMetrics.widthPixels
         val height = context.resources.displayMetrics.heightPixels
         if (width < height) {
-            // now we are in portrait
+            // 现在我们在竖直屏幕
             window?.let {
                 val param = it.attributes
                 it.setGravity(Gravity.CENTER)
@@ -212,7 +213,7 @@ class DefaultDialog(context: Context,
                 it.attributes = param
             }
         } else {
-            // now we are in landscape
+            // 现在我们在横屏
             window?.let {
                 val param = it.attributes
                 it.setGravity(Gravity.CENTER)
@@ -223,7 +224,7 @@ class DefaultDialog(context: Context,
     }
 
     /**
-     * Currently we are in dark theme or not.
+     * 目前我们是否处于黑暗主题
      */
     private fun isDarkTheme(): Boolean {
         val flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK

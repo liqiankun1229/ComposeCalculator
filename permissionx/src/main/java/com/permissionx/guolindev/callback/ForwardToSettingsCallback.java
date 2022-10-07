@@ -24,19 +24,14 @@ import com.permissionx.guolindev.request.PermissionBuilder;
 import java.util.List;
 
 /**
- * Callback for {@link PermissionBuilder#onForwardToSettings(ForwardToSettingsCallback)} method.
- *
- * @author guolin
- * @since 2020/6/7
+ * {@link PermissionBuilder#onForwardToSettings(ForwardToSettingsCallback)} 方法的回调
  */
 public interface ForwardToSettingsCallback {
 
     /**
-     * Called when you should tell user to allow these permissions in settings.
-     * @param scope
-     *          Scope to show rationale dialog.
-     * @param deniedList
-     *          Permissions that should allow in settings.
+     * 当您应该告诉用户在设置中允许这些权限时调用
+     * @param scope 显示基本原理对话框的范围
+     * @param deniedList 设置中应该允许的权限
      */
     void onForwardToSettings(@NonNull ForwardScope scope, @NonNull List<String> deniedList);
 

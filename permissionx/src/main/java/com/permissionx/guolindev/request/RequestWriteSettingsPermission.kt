@@ -30,38 +30,39 @@ internal class RequestWriteSettingsPermission internal constructor(permissionBui
         if (pb.shouldRequestWriteSettingsPermission()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && pb.targetSdkVersion >= Build.VERSION_CODES.M) {
                 if (Settings.System.canWrite(pb.activity)) {
-                    // WRITE_SETTINGS permission has already granted, we can finish this task now.
+                    // 已授予 WRITE_SETTINGS 权限 我们现在可以完成此任务
                     finish()
                     return
                 }
                 if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     val requestList = mutableListOf(Manifest.permission.WRITE_SETTINGS)
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
-                        // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                        // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                     } else {
-                        pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                        pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                     }
                 } else {
-                    // No implementation of explainReasonCallback, we can't request
-                    // WRITE_SETTINGS permission at this time, because user won't understand why.
+                    // 没有执行 explainReasonCallback
+                    // 此时我们不能请求 WRITE_SETTINGS 权限 因为用户不明白为什么
                     finish()
                 }
             } else {
-                // WRITE_SETTINGS permission is automatically granted below Android M.
+                // WRITE_SETTINGS 权限在 Android M 以下自动授予
                 pb.grantedPermissions.add(Manifest.permission.WRITE_SETTINGS)
-                // At this time, WRITE_SETTINGS permission shouldn't be special treated anymore.
+                // 此时 不应再对 WRITE_SETTINGS 权限进行特殊处理
                 pb.specialPermissions.remove(Manifest.permission.WRITE_SETTINGS)
                 finish()
             }
         } else {
-            // shouldn't request WRITE_SETTINGS permission at this time, so we call finish() to finish this task.
+            // 此时不应请求 WRITE_SETTINGS 权限
+            // 因此我们调用 finish() 来结束此任务
             finish()
         }
     }
 
     override fun requestAgain(permissions: List<String>) {
-        // don't care what the permissions param is, always request WRITE_SETTINGS permission.
+        // 不在乎权限参数是什么 始终请求 WRITE_SETTINGS 权限
         pb.requestWriteSettingsPermissionNow(this)
     }
 }

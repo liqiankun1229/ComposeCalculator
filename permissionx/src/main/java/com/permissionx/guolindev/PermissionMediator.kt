@@ -41,10 +41,10 @@ class PermissionMediator {
     }
 
     /**
-     * All permissions that you want to request.
+     * 您要请求的所有权限
      *
-     * @param permissions A vararg param to pass permissions.
-     * @return PermissionBuilder itself.
+     * @param permissions 要申请的权限列表
+     * @return PermissionBuilder 本身
      */
     fun permissions(permissions: List<String>): PermissionBuilder {
         val normalPermissionSet = LinkedHashSet<String>()
@@ -83,10 +83,10 @@ class PermissionMediator {
     }
 
     /**
-     * All permissions that you want to request.
+     * 您要请求的所有权限
      *
-     * @param permissions A vararg param to pass permissions.
-     * @return PermissionBuilder itself.
+     * @param permissions 要申请的权限列表 vararg
+     * @return PermissionBuilder 本身
      */
     fun permissions(vararg permissions: String): PermissionBuilder {
         return permissions(listOf(*permissions))

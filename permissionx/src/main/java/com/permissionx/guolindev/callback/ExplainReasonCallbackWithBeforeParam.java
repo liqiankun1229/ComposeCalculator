@@ -24,21 +24,15 @@ import com.permissionx.guolindev.request.PermissionBuilder;
 import java.util.List;
 
 /**
- * Callback for {@link PermissionBuilder#onExplainRequestReason(ExplainReasonCallbackWithBeforeParam)} method.
- *
- * @author guolin
- * @since 2020/6/7
+ * 回调 {@link PermissionBuilder#onExplainRequestReason(ExplainReasonCallbackWithBeforeParam)} 方法
  */
 public interface ExplainReasonCallbackWithBeforeParam {
 
     /**
-     * Called when you should explain why you need these permissions.
-     * @param scope
-     *          Scope to show rationale dialog.
-     * @param deniedList
-     *          Permissions that you should explain.
-     * @param beforeRequest
-     *          Indicate it's before or after permission request. Work with {@link PermissionBuilder#explainReasonBeforeRequest()}
+     * 当您应该解释为什么需要这些权限时调用
+     * @param scope 显示基本原理对话框的范围
+     * @param deniedList 您应该解释的权限
+     * @param beforeRequest 表示它是在权限请求之前或之后 使用 {@link PermissionBuilder#explainReasonBeforeRequest()}
      */
     void onExplainReason(@NonNull ExplainScope scope, @NonNull List<String> deniedList, boolean beforeRequest);
 

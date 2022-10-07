@@ -27,27 +27,27 @@ internal class RequestManageExternalStoragePermission internal constructor(permi
     override fun request() {
         if (pb.shouldRequestManageExternalStoragePermission() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (Environment.isExternalStorageManager()) {
-                // MANAGE_EXTERNAL_STORAGE permission has already granted, we can finish this task now.
+                // MANAGE_EXTERNAL_STORAGE 权限已经授予 我们现在可以完成这个任务了
                 finish()
                 return
             }
             if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                 val requestList = mutableListOf(MANAGE_EXTERNAL_STORAGE)
                 if (pb.explainReasonCallbackWithBeforeParam != null) {
-                    // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
-                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope, requestList, true)
+                    // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
+                    pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(getExplainScope(), requestList, true)
                 } else {
-                    pb.explainReasonCallback!!.onExplainReason(explainScope, requestList)
+                    pb.explainReasonCallback!!.onExplainReason(getExplainScope(), requestList)
                 }
             } else {
-                // No implementation of explainReasonCallback, we can't request
-                // MANAGE_EXTERNAL_STORAGE permission at this time, because user won't understand why.
+                // 没有执行 explainReasonCallback
+                // 此时我们不能请求 MANAGE_EXTERNAL_STORAGE 权限，因为用户不明白为什么
                 finish()
             }
             return
         }
-        // shouldn't request MANAGE_EXTERNAL_STORAGE permission at this time, so we call finish()
-        // to finish this task.
+        // 此时不应请求 MANAGE_EXTERNAL_STORAGE 权限
+        // 因此我们调用 finish() 来结束此任务
         finish()
     }
 
@@ -61,7 +61,7 @@ internal class RequestManageExternalStoragePermission internal constructor(permi
 
     companion object {
         /**
-         * Define the const to compat with system lower than R.
+         * 定义 const 以与低于 R 的系统兼容
          */
         const val MANAGE_EXTERNAL_STORAGE = "android.permission.MANAGE_EXTERNAL_STORAGE"
     }
