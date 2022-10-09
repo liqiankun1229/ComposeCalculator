@@ -65,16 +65,16 @@ class PermissionMediator {
         if (RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION in specialPermissionSet) {
             if (osVersion == Build.VERSION_CODES.Q ||
                 (osVersion == Build.VERSION_CODES.R && targetSdkVersion < Build.VERSION_CODES.R)) {
-                // If we request ACCESS_BACKGROUND_LOCATION on Q or on R but targetSdkVersion below R,
-                // We don't need to request specially, just request as normal permission.
+                // 如果我们在 Q 或 R 上请求 ACCESS_BACKGROUND_LOCATION 但 targetSdkVersion 在 R 以下
+                // 我们不需要特别请求 只需按正常权限请求即可
                 specialPermissionSet.remove(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                 normalPermissionSet.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
             }
         }
         if (PermissionX.permission.POST_NOTIFICATIONS in specialPermissionSet) {
             if (osVersion >= Build.VERSION_CODES.TIRAMISU && targetSdkVersion >= Build.VERSION_CODES.TIRAMISU) {
-                // If we request POST_NOTIFICATIONS on TIRAMISU or above and targetSdkVersion >= TIRAMISU,
-                // We don't need to request specially, just request as normal permission.
+                // 如果我们在 TIRAMISU 或以上请求 POST_NOTIFICATIONS 并且 targetSdkVersion >= TIRAMISU
+                // 我们不需要特别请求 只需按正常权限请求即可
                 specialPermissionSet.remove(PermissionX.permission.POST_NOTIFICATIONS)
                 normalPermissionSet.add(PermissionX.permission.POST_NOTIFICATIONS)
             }

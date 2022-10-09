@@ -13,25 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.permissionx.guolindev.callback
 
-package com.permissionx.guolindev.callback;
-
-import androidx.annotation.NonNull;
-
-import java.util.List;
+import com.permissionx.guolindev.request.ExplainScope
 
 /**
- * 请求权限的回调 用于
- * {@link com.permissionx.guolindev.request.PermissionBuilder#request(RequestCallback)}
+ * 回调 @see PermissionBuilder#onExplainRequestReason] 方法
  */
-public interface RequestCallback {
-
+interface ExplainReasonCallback {
     /**
-     * 请求结果的回调
-     * @param allGranted – 指示是否授予了所有权限
-     * @param grantedList – 用户授予的所有权限
-     * @param deniedList – 用户拒绝的所有权限
+     * 解释为什么需要这些权限时调用
+     *
+     * @param scope      显示基本原理对话框的范围
+     * @param deniedList 您应该解释的权限
      */
-    void onResult(boolean allGranted, @NonNull List<String> grantedList, @NonNull List<String> deniedList);
-
+    fun onExplainReason(scope: ExplainScope, deniedList: List<String>)
 }

@@ -51,30 +51,30 @@ class PermissionBuilder(
     lateinit var activity: FragmentActivity
 
     /**
-     * Instance of fragment for everything as an alternative choice for activity.
+     * 一切的片段实例作为活动(Activity)的替代选择
      * fragment 实例
      */
     private var fragment: Fragment? = null
 
     /**
-     * The custom tint color to set on the DefaultDialog in light theme.
+     * 在 Light 主题中的 DefaultDialog 上设置的自定义色调颜色
      */
     private var lightColor = -1
 
     /**
-     * The custom tint color to set on the DefaultDialog in dark theme.
+     * 在深色主题中的 DefaultDialog 上设置的自定义色调颜色
      */
     private var darkColor = -1
 
     /**
-     * The origin request orientation of the current Activity. We need to restore it when
-     * permission request finished.
+     * 当前 Activity 的源请求方向 我们需要在权限请求完成后恢复它
      */
     private var originRequestOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
     /**
-     * Get the FragmentManager if it's in Activity, or the ChildFragmentManager if it's in Fragment.
-     * @return The FragmentManager to operate Fragment.
+     * 如果在 Activity 中 则获取 FragmentManager
+     * 如果在 Fragment 中 则获取 ChildFragmentManager
+     * @return FragmentManager 操作Fragment
      */
     private val fragmentManager: FragmentManager
         get() {
@@ -217,7 +217,7 @@ class PermissionBuilder(
      * @param callback - 用户拒绝权限的回调
      * @return PermissionBuilder 本身
      */
-    fun onExplainRequestReason(callback: ExplainReasonCallback?): PermissionBuilder {
+    fun onExplainRequestReason(callback: ExplainReasonCallback): PermissionBuilder {
         explainReasonCallback = callback
         return this
     }
@@ -334,8 +334,7 @@ class PermissionBuilder(
         currentDialog = dialog
         dialog.show()
         if (dialog is DefaultDialog && dialog.isPermissionLayoutEmpty()) {
-            // No valid permission to show on the dialog.
-            // We call dismiss instead.
+            // 没有在对话框上显示的有效权限 我们改为调用dismiss
             dialog.dismiss()
             chainTask.finish()
         }
@@ -406,10 +405,10 @@ class PermissionBuilder(
     }
 
     /**
-     * Request permissions at once in the fragment.
+     * 在片段中一次请求权限
      *
-     * @param permissions Permissions that you want to request.
-     * @param chainTask   Instance of current task.
+     * @param permissions 您要请求的权限
+     * @param chainTask   当前任务的实例
      */
     fun requestNow(permissions: Set<String>, chainTask: ChainTask) {
         invisibleFragment.requestNow(this, permissions, chainTask)
@@ -633,7 +632,7 @@ class PermissionBuilder(
             activity = fragment.requireActivity()
         }
         // 同时为空的时候抛出异常
-        if (activity == null && fragment == null){
+        if (activity == null && fragment == null) {
             throw IllegalAccessException()
         }
         this.fragment = fragment

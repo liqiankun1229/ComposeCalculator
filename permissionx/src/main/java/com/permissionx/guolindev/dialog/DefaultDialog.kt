@@ -169,8 +169,7 @@ class DefaultDialog(context: Context,
                     }
                     permission == Manifest.permission.POST_NOTIFICATIONS
                             && Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU -> {
-                        // When OS version is lower than Android 13, there isn't a notification icon or labelRes for us to get.
-                        // So we need to handle it as special permission's way.
+                        // 当操作系统版本低于 Android 13 时 没有通知图标或 labelRes 供我们获取 所以我们需要以特殊许可的方式处理
                         itemBinding.permissionText.text = context.getString(R.string.permissionx_post_notification)
                         itemBinding.permissionIcon.setImageResource(R.drawable.permissionx_ic_notification)
                     }

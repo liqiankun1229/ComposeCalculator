@@ -13,26 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.permissionx.guolindev.callback
 
-package com.permissionx.guolindev.callback;
-
-import androidx.annotation.NonNull;
-
-import com.permissionx.guolindev.request.ForwardScope;
-import com.permissionx.guolindev.request.PermissionBuilder;
-
-import java.util.List;
+import com.permissionx.guolindev.request.ForwardScope
 
 /**
- * {@link PermissionBuilder#onForwardToSettings(ForwardToSettingsCallback)} 方法的回调
+ * [PermissionBuilder.onForwardToSettings] 方法的回调
  */
-public interface ForwardToSettingsCallback {
-
+interface ForwardToSettingsCallback {
     /**
      * 当您应该告诉用户在设置中允许这些权限时调用
      * @param scope 显示基本原理对话框的范围
      * @param deniedList 设置中应该允许的权限
      */
-    void onForwardToSettings(@NonNull ForwardScope scope, @NonNull List<String> deniedList);
-
+    fun onForwardToSettings(scope: ForwardScope, deniedList: List<String>)
 }

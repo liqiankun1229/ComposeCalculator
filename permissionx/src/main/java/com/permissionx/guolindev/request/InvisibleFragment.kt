@@ -318,39 +318,38 @@ class InvisibleFragment : Fragment() {
      */
     private fun onRequestNormalPermissionsResult(grantResults: Map<String, Boolean>) {
         if (checkForGC()) {
-            // We can never holds granted permissions for safety, because user may turn some permissions off in settings.
-            // So every time request, must request the already granted permissions again and refresh the granted permission set.
+            // 为了安全起见 我们永远不能保留授予的权限
+            // 因为用户可能会在设置中关闭某些权限
+            // 所以每次请求 都必须再次请求已经授予的权限 并刷新已授予的权限集
             pb.grantedPermissions.clear()
-            val showReasonList: MutableList<String> =
-                ArrayList() // holds denied permissions in the request permissions.
-            val forwardList: MutableList<String> =
-                ArrayList() // hold permanently denied permissions in the request permissions.
+            val showReasonList: MutableList<String> = ArrayList() // 在请求权限中持有拒绝权限
+            val forwardList: MutableList<String> = ArrayList() // 在请求权限中持有永久拒绝的权限
             for ((permission, granted) in grantResults) {
                 if (granted) {
                     pb.grantedPermissions.add(permission)
-                    // Remove granted permissions from deniedPermissions and permanentDeniedPermissions set in PermissionBuilder.
+                    // 从 PermissionBuilder 中设置的 deniedPermissions 和 PermanentDeniedPermissions 中删除授予的权限
                     pb.deniedPermissions.remove(permission)
                     pb.permanentDeniedPermissions.remove(permission)
                 } else {
-                    // Denied permission can turn into permanent denied permissions, but permanent denied permission can not turn into denied permissions.
+                    // 被拒绝的权限可以变成永久被拒绝的权限 但永久被拒绝的权限不能变成被拒绝的权限
                     val shouldShowRationale = shouldShowRequestPermissionRationale(permission)
                     if (shouldShowRationale) {
                         showReasonList.add(permission)
                         pb.deniedPermissions.add(permission)
-                        // So there's no need to remove the current permission from permanentDeniedPermissions because it won't be there.
+                        // 因此 无需从永久拒绝权限中删除当前权限 因为它不会存在
                     } else {
                         forwardList.add(permission)
                         pb.permanentDeniedPermissions.add(permission)
-                        // We must remove the current permission from deniedPermissions because it is permanent denied permission now.
+                        // 我们必须从 deniedPermissions 中删除当前权限 因为它现在是永久拒绝权限
                         pb.deniedPermissions.remove(permission)
                     }
                 }
             }
-            val deniedPermissions: MutableList<String> =
-                ArrayList() // used to validate the deniedPermissions and permanentDeniedPermissions
+            // 用于验证 deniedPermissions 和 PermanentDeniedPermissions
+            val deniedPermissions: MutableList<String> = ArrayList()
             deniedPermissions.addAll(pb.deniedPermissions)
             deniedPermissions.addAll(pb.permanentDeniedPermissions)
-            // maybe user can turn some permissions on in settings that we didn't request, so check the denied permissions again for safety.
+            // 也许用户可以在我们没有请求的设置中打开一些权限 因此请再次检查被拒绝的权限以确保安全
             for (permission in deniedPermissions) {
                 if (PermissionX.isGranted(requireContext(), permission)) {
                     pb.deniedPermissions.remove(permission)
@@ -358,16 +357,16 @@ class InvisibleFragment : Fragment() {
                 }
             }
             val allGranted = pb.grantedPermissions.size == pb.normalPermissions.size
-            if (allGranted) { // If all permissions are granted, finish current task directly.
+            if (allGranted) { // 如果授予所有权限 则直接完成当前任务
                 task.finish()
             } else {
                 var shouldFinishTheTask = true // Indicate if we should finish the task
-                // If explainReasonCallback is not null and there are denied permissions. Try the ExplainReasonCallback.
+                // 如果 explainReasonCallback 不为 null 并且存在被拒绝的权限
+                // 试试 ExplainReasonCallback
                 if ((pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) && showReasonList.isNotEmpty()) {
-                    shouldFinishTheTask =
-                        false // shouldn't because ExplainReasonCallback handles it
+                    shouldFinishTheTask = false // 不应该因为 ExplainReasonCallback 处理它
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
-                        // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                        // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                         pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                             task.getExplainScope(), ArrayList(pb.deniedPermissions), false
                         )
@@ -377,27 +376,27 @@ class InvisibleFragment : Fragment() {
                             ArrayList(pb.deniedPermissions)
                         )
                     }
-                    // store these permanently denied permissions or they will be lost when request again.
+                    // 存储这些永久拒绝的权限 否则再次请求时它们将丢失
                     pb.tempPermanentDeniedPermissions.addAll(forwardList)
                 } else if (pb.forwardToSettingsCallback != null && (forwardList.isNotEmpty() || pb.tempPermanentDeniedPermissions.isNotEmpty())) {
-                    shouldFinishTheTask =
-                        false // shouldn't because ForwardToSettingsCallback handles it
-                    pb.tempPermanentDeniedPermissions.clear() // no need to store them anymore once onForwardToSettings callback.
+                    shouldFinishTheTask = false // 不应该因为 ForwardToSettingsCallback 处理它
+                    pb.tempPermanentDeniedPermissions.clear() // 一旦 onForwardToSettings 回调，就不需要再存储它们了
                     pb.forwardToSettingsCallback!!.onForwardToSettings(
                         task.getForwardScope(),
                         ArrayList(pb.permanentDeniedPermissions)
                     )
                 }
-                // If showRequestReasonDialog or showForwardToSettingsDialog is not called. We should finish the task.
-                // There's case that ExplainReasonCallback or ForwardToSettingsCallback is called, but developer didn't invoke
-                // showRequestReasonDialog or showForwardToSettingsDialog in the callback.
-                // At this case and all other cases, task should be finished.
+                // 如果未调用 showRequestReasonDialog 或 showForwardToSettingsDialog 我们应该完成任务
+                // 有时调用了 ExplainReasonCallback 或 ForwardToSettingsCallback
+                // 但开发者没有在回调中调用 showRequestReasonDialog 或 showForwardToSettingsDialog
+                // 在这种情况下和所有其他情况下 任务都应该结束
                 if (shouldFinishTheTask || !pb.showDialogCalled) {
                     task.finish()
                 }
-                // Reset this value after each request. If we don't do this, developer invoke showRequestReasonDialog in ExplainReasonCallback
-                // but didn't invoke showForwardToSettingsDialog in ForwardToSettingsCallback, the request process will be lost. Because the
-                // previous showDialogCalled affect the next request logic.
+                // 每次请求后重置此值 如果我们不这样做
+                // 开发人员在 ExplainReasonCallback 中调用 showRequestReasonDialog
+                // 但在 ForwardToSettingsCallback 中没有调用 showForwardToSettingsDialog
+                // 请求过程将丢失 因为前面的 showDialogCalled 影响了后面的请求逻辑
                 pb.showDialogCalled = false
             }
         }
@@ -411,18 +410,17 @@ class InvisibleFragment : Fragment() {
             postForResult {
                 if (granted) {
                     pb.grantedPermissions.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
-                    // Remove granted permissions from deniedPermissions and permanentDeniedPermissions set in PermissionBuilder.
+                    // 从 PermissionBuilder 中设置的 deniedPermissions 和 PermanentDeniedPermissions 中删除授予的权限
                     pb.deniedPermissions.remove(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                     pb.permanentDeniedPermissions.remove(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                     task.finish()
                 } else {
-                    var goesToRequestCallback = true // Indicate if we should finish the task
+                    var goesToRequestCallback = true // 指示我们是否应该完成任务
                     val shouldShowRationale =
                         shouldShowRequestPermissionRationale(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
-                    // If explainReasonCallback is not null and we should show rationale. Try the ExplainReasonCallback.
+                    // 如果 explainReasonCallback 不为空 我们应该说明理由 试试 ExplainReasonCallback
                     if ((pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) && shouldShowRationale) {
-                        goesToRequestCallback =
-                            false // shouldn't because ExplainReasonCallback handles it
+                        goesToRequestCallback = false // 不应该因为 ExplainReasonCallback 处理它
                         val permissionsToExplain: MutableList<String> = ArrayList()
                         permissionsToExplain.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
@@ -437,8 +435,7 @@ class InvisibleFragment : Fragment() {
                             )
                         }
                     } else if (pb.forwardToSettingsCallback != null && !shouldShowRationale) {
-                        goesToRequestCallback =
-                            false // shouldn't because ForwardToSettingsCallback handles it
+                        goesToRequestCallback = false // 不应该因为 ForwardToSettingsCallback 处理它
                         val permissionsToForward: MutableList<String> = ArrayList()
                         permissionsToForward.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
                         pb.forwardToSettingsCallback!!.onForwardToSettings(
@@ -446,10 +443,10 @@ class InvisibleFragment : Fragment() {
                             permissionsToForward
                         )
                     }
-                    // If showRequestReasonDialog or showForwardToSettingsDialog is not called. We should finish the task.
-                    // There's case that ExplainReasonCallback or ForwardToSettingsCallback is called, but developer didn't invoke
-                    // showRequestReasonDialog or showForwardToSettingsDialog in the callback.
-                    // At this case and all other cases, task should be finished.
+                    // 如果未调用 showRequestReasonDialog 或 showForwardToSettingsDialog 我们应该结束任务
+                    // 有时调用了 ExplainReasonCallback 或 ForwardToSettingsCallback
+                    // 但开发者没有在回调中调用 showRequestReasonDialog 或 showForwardToSettingsDialog
+                    // 在这种情况下和所有其他情况下 任务都应该结束
                     if (goesToRequestCallback || !pb.showDialogCalled) {
                         task.finish()
                     }
@@ -468,7 +465,7 @@ class InvisibleFragment : Fragment() {
                     task.finish()
                 } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     if (pb.explainReasonCallbackWithBeforeParam != null) {
-                        // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                        // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                         pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                             task.getExplainScope(),
                             listOf(Manifest.permission.SYSTEM_ALERT_WINDOW),
@@ -497,7 +494,7 @@ class InvisibleFragment : Fragment() {
                         task.finish()
                     } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
-                            // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                            // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                                 task.getExplainScope(), listOf(Manifest.permission.WRITE_SETTINGS), false
                             )
@@ -515,7 +512,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of MANAGE_EXTERNAL_STORAGE permission request.
+     * 处理 MANAGE_EXTERNAL_STORAGE 权限请求的结果
      */
     private fun onRequestManageExternalStoragePermissionResult() {
         if (checkForGC()) {
@@ -525,7 +522,7 @@ class InvisibleFragment : Fragment() {
                         task.finish()
                     } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
-                            // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                            // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                                 task.getExplainScope(),
                                 listOf(Manifest.permission.MANAGE_EXTERNAL_STORAGE),
@@ -546,7 +543,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of REQUEST_INSTALL_PACKAGES permission request.
+     * 处理 REQUEST_INSTALL_PACKAGES 权限请求的结果
      */
     private fun onRequestInstallPackagesPermissionResult() {
         if (checkForGC()) {
@@ -556,7 +553,7 @@ class InvisibleFragment : Fragment() {
                         task.finish()
                     } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
-                            // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                            // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                                 task.getExplainScope(),
                                 listOf(Manifest.permission.REQUEST_INSTALL_PACKAGES),
@@ -577,7 +574,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of notification permission request.
+     * 处理通知权限请求的结果
      */
     private fun onRequestNotificationPermissionResult() {
         if (checkForGC()) {
@@ -587,7 +584,7 @@ class InvisibleFragment : Fragment() {
                         task.finish()
                     } else if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
-                            // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                            // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                                 task.getExplainScope(),
                                 listOf(PermissionX.permission.POST_NOTIFICATIONS),
@@ -608,29 +605,29 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Handle result of BODY_SENSORS_BACKGROUND permission request.
+     * 处理 BODY_SENSORS_BACKGROUND 权限请求的结果
      */
     private fun onRequestBodySensorsBackgroundPermissionResult(granted: Boolean) {
         if (checkForGC()) {
             postForResult {
                 if (granted) {
                     pb.grantedPermissions.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
-                    // Remove granted permissions from deniedPermissions and permanentDeniedPermissions set in PermissionBuilder.
+                    // 从 PermissionBuilder 中设置的 deniedPermissions 和 PermanentDeniedPermissions 中删除授予的权限
                     pb.deniedPermissions.remove(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
                     pb.permanentDeniedPermissions.remove(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
                     task.finish()
                 } else {
-                    var goesToRequestCallback = true // Indicate if we should finish the task
+                    var goesToRequestCallback = true // 指示我们是否应该完成任务
                     val shouldShowRationale =
                         shouldShowRequestPermissionRationale(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
-                    // If explainReasonCallback is not null and we should show rationale. Try the ExplainReasonCallback.
+                    // 如果 explainReasonCallback 不为空 我们应该说明理由
+                    // 试试 ExplainReasonCallback
                     if ((pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) && shouldShowRationale) {
-                        goesToRequestCallback =
-                            false // shouldn't because ExplainReasonCallback handles it
+                        goesToRequestCallback = false // 不应该因为 ExplainReasonCallback 处理它
                         val permissionsToExplain: MutableList<String> = ArrayList()
                         permissionsToExplain.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
                         if (pb.explainReasonCallbackWithBeforeParam != null) {
-                            // callback ExplainReasonCallbackWithBeforeParam prior to ExplainReasonCallback
+                            // 在 ExplainReasonCallback 之前回调 ExplainReasonCallbackWithBeforeParam
                             pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(
                                 task.getExplainScope(), permissionsToExplain, false
                             )
@@ -641,8 +638,7 @@ class InvisibleFragment : Fragment() {
                             )
                         }
                     } else if (pb.forwardToSettingsCallback != null && !shouldShowRationale) {
-                        goesToRequestCallback =
-                            false // shouldn't because ForwardToSettingsCallback handles it
+                        goesToRequestCallback = false // 不应该因为 ForwardToSettingsCallback 处理它
                         val permissionsToForward: MutableList<String> = ArrayList()
                         permissionsToForward.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
                         pb.forwardToSettingsCallback!!.onForwardToSettings(
@@ -650,10 +646,10 @@ class InvisibleFragment : Fragment() {
                             permissionsToForward
                         )
                     }
-                    // If showRequestReasonDialog or showForwardToSettingsDialog is not called. We should finish the task.
-                    // There's case that ExplainReasonCallback or ForwardToSettingsCallback is called, but developer didn't invoke
-                    // showRequestReasonDialog or showForwardToSettingsDialog in the callback.
-                    // At this case and all other cases, task should be finished.
+                    // 如果未调用 showRequestReasonDialog 或 showForwardToSettingsDialog 我们应该结束任务
+                    // 有时调用了 ExplainReasonCallback 或 ForwardToSettingsCallback
+                    // 但开发者没有在回调中调用 showRequestReasonDialog 或 showForwardToSettingsDialog
+                    // 在这种情况下和所有其他情况下 任务都应该结束
                     if (goesToRequestCallback || !pb.showDialogCalled) {
                         task.finish()
                     }
@@ -679,7 +675,7 @@ class InvisibleFragment : Fragment() {
     }
 
     /**
-     * Post to continue the further request callback for safe, in case some edge case crashes.
+     * 发布以继续进一步请求回调以确保安全 以防某些边缘情况崩溃
      */
     private fun postForResult(callback: () -> Unit) {
         handler.post {
