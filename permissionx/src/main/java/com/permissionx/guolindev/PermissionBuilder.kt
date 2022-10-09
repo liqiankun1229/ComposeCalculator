@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.permissionx.guolindev.request
+package com.permissionx.guolindev
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -25,14 +25,25 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.permissionx.guolindev.PermissionX
 import com.permissionx.guolindev.callback.ExplainReasonCallback
 import com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam
 import com.permissionx.guolindev.callback.ForwardToSettingsCallback
 import com.permissionx.guolindev.callback.RequestCallback
+import com.permissionx.guolindev.chain.RequestChain
 import com.permissionx.guolindev.dialog.DefaultDialog
 import com.permissionx.guolindev.dialog.RationaleDialog
 import com.permissionx.guolindev.dialog.RationaleDialogFragment
+import com.permissionx.guolindev.fragment.InvisibleFragment
+import com.permissionx.guolindev.request.*
+import com.permissionx.guolindev.request.RequestBackgroundLocationPermission
+import com.permissionx.guolindev.request.RequestBodySensorsBackgroundPermission
+import com.permissionx.guolindev.request.RequestInstallPackagesPermission
+import com.permissionx.guolindev.request.RequestManageExternalStoragePermission
+import com.permissionx.guolindev.request.RequestNormalPermissions
+import com.permissionx.guolindev.request.RequestNotificationPermission
+import com.permissionx.guolindev.request.RequestSystemAlertWindowPermission
+import com.permissionx.guolindev.request.RequestWriteSettingsPermission
+import com.permissionx.guolindev.task.ChainTask
 import java.util.*
 
 /**

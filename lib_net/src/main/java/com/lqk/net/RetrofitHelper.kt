@@ -18,8 +18,11 @@ class RetrofitHelper private constructor() {
 
     init {
         retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.31.71:5000")
+            // 域名
+            .baseUrl(UrlConstant.Base_URL)
+            // 请求客户端
             .client(initOkHttpClient())
+            // 解析 json 的转换器
             .addConverterFactory(GsonConverterFactory.create())
 
             .build()

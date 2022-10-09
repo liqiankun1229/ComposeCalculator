@@ -17,6 +17,8 @@ package com.permissionx.guolindev.request
 
 import android.os.Build
 import android.os.Environment
+import com.permissionx.guolindev.PermissionBuilder
+import com.permissionx.guolindev.task.BaseTask
 
 /**
  * 请求管理外部存储权限 android.permission.MANAGE_EXTERNAL_STORAGE

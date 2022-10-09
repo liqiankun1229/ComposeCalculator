@@ -15,7 +15,9 @@
  */
 package com.permissionx.guolindev.request
 
+import com.permissionx.guolindev.PermissionBuilder
 import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.task.BaseTask
 import java.util.*
 
 /**

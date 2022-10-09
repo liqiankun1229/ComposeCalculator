@@ -28,7 +28,6 @@ class MainViewModel : ViewModel() {
                 result.data.forEach {
                     Log.d(TAG, "loadPackage: ${it.name} : ${it.url}")
                 }
-
             } catch (e: Throwable) {
                 val msg = when (e) {
                     is CancellationException -> {

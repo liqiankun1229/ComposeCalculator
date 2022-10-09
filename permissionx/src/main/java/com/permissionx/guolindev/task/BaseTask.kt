@@ -13,13 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.permissionx.guolindev.request
+package com.permissionx.guolindev.task
 
 import android.Manifest
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
+import com.permissionx.guolindev.PermissionBuilder
 import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.request.*
+import com.permissionx.guolindev.request.RequestBackgroundLocationPermission
+import com.permissionx.guolindev.request.RequestBodySensorsBackgroundPermission
+import com.permissionx.guolindev.request.RequestInstallPackagesPermission
+import com.permissionx.guolindev.request.RequestManageExternalStoragePermission
 import java.util.*
 
 /**

@@ -20,7 +20,6 @@ import android.os.Build
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.permissionx.guolindev.dialog.allSpecialPermissions
-import com.permissionx.guolindev.request.PermissionBuilder
 import com.permissionx.guolindev.request.RequestBackgroundLocationPermission
 import kotlin.collections.LinkedHashSet
 

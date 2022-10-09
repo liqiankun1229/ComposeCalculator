@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.permissionx.guolindev.request
+package com.permissionx.guolindev.chain
+
+import com.permissionx.guolindev.task.BaseTask
 
 /**
  * 维护权限请求流程的任务链

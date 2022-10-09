@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.permissionx.guolindev.request
+package com.permissionx.guolindev.fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -28,6 +28,10 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.PermissionBuilder
+import com.permissionx.guolindev.request.RequestBackgroundLocationPermission
+import com.permissionx.guolindev.request.RequestBodySensorsBackgroundPermission
+import com.permissionx.guolindev.task.ChainTask
 import java.util.ArrayList
 
 /**

@@ -17,7 +17,9 @@ package com.permissionx.guolindev.request
 
 import android.Manifest
 import android.os.Build
+import com.permissionx.guolindev.PermissionBuilder
 import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.task.BaseTask
 
 /**
  * 请求身体传感器权限

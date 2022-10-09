@@ -15,7 +15,9 @@
  */
 package com.permissionx.guolindev.request
 
+import com.permissionx.guolindev.PermissionBuilder
 import com.permissionx.guolindev.PermissionX
+import com.permissionx.guolindev.task.BaseTask
 
 /**
  * 请求通知权限 33 新增动态权限

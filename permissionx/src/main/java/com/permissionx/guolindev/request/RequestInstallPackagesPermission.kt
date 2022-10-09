@@ -17,6 +17,8 @@ package com.permissionx.guolindev.request
 
 import android.Manifest
 import android.os.Build
+import com.permissionx.guolindev.PermissionBuilder
+import com.permissionx.guolindev.task.BaseTask
 
 /**
  * 请求安装应用的权限 android.permission.REQUEST_INSTALL_PACKAGES

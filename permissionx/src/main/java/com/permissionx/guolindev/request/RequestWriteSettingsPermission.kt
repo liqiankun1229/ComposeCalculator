@@ -18,6 +18,8 @@ package com.permissionx.guolindev.request
 import android.Manifest
 import android.os.Build
 import android.provider.Settings
+import com.permissionx.guolindev.PermissionBuilder
+import com.permissionx.guolindev.task.BaseTask
 
 /**
  * 请求修改系统设置的权限 android.permission.WRITE_SETTINGS.

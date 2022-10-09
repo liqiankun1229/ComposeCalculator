@@ -15,9 +15,11 @@
  */
 package com.permissionx.guolindev.request
 
+import com.permissionx.guolindev.PermissionBuilder
 import kotlin.jvm.JvmOverloads
 import com.permissionx.guolindev.dialog.RationaleDialog
 import com.permissionx.guolindev.dialog.RationaleDialogFragment
+import com.permissionx.guolindev.task.ChainTask
 
 /**
  * 为
