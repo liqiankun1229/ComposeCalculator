@@ -18,7 +18,7 @@ android {
             abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
     }
-    // uncomment this line to support armeabi by using android-ndk-r16b
+    // 取消注释此行以使用 android-ndk-r16b 支持 armeabi
     ndkVersion = '21.0.6113669'
     buildTypes {
         release {

@@ -14,14 +14,12 @@ import com.lqk.base.fragment.BaseFragment
  */
 abstract class BaseVBFragment<VB : ViewBinding> : BaseFragment() {
 
-    private val viewBinding: VB by lazy {
-        initViewBinding()
-    }
+    abstract fun initViewBinding(inflater: LayoutInflater): VB
 
-    abstract fun initViewBinding(): VB
+    protected lateinit var viewBinding: VB
 
     override fun initFragment(inflater: LayoutInflater, container: ViewGroup?): View {
-
+        viewBinding = initViewBinding(inflater)
         return viewBinding.root
     }
 
