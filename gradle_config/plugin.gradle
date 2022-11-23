@@ -1,0 +1,16 @@
+class CustomPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        // 给app module/other 添加一个 hello 的 task
+        project.task("custom") {
+            doLast {
+                println("task hello!!!")
+            }
+        }
+        project.afterEvaluate {
+            println("CustomPlugin")
+        }
+    }
+}
+
+apply plugin: CustomPlugin

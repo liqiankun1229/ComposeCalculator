@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "ComposeCalculator",
+    "module": "plugin_compile",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "compile-0.0.1.jar",
+          "url": "compile-0.0.1.jar",
+          "size": 4852,
+          "sha512": "8581f63edb0f077ad5954a35272aa83f40e0695e5a40ccbdfbc382c11720d1b265650bf3835208538ab4dc7497ca015235aa3433443bcacc020950af078fe840",
+          "sha256": "cfcdb89bb600551f3c7f22a7e11aba55484a369eb29c332cc7ab74300aa4b9f7",
+          "sha1": "734993597968944b465a5363bcc9b4c2e16fc36b",
+          "md5": "c6c5aaca6574c5b3b80d8dc31f857941"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "compile-0.0.1.jar",
+          "url": "compile-0.0.1.jar",
+          "size": 4852,
+          "sha512": "8581f63edb0f077ad5954a35272aa83f40e0695e5a40ccbdfbc382c11720d1b265650bf3835208538ab4dc7497ca015235aa3433443bcacc020950af078fe840",
+          "sha256": "cfcdb89bb600551f3c7f22a7e11aba55484a369eb29c332cc7ab74300aa4b9f7",
+          "sha1": "734993597968944b465a5363bcc9b4c2e16fc36b",
+          "md5": "c6c5aaca6574c5b3b80d8dc31f857941"
+        }
+      ]
+    }
+  ]
+}

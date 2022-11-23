@@ -44,6 +44,7 @@ android {
     }
 
     flavorDimensions "stl_mode"
+    namespace 'com.tencent.mmkv'
 //    productFlavors {
 //        DefaultCpp {
 //            dimension "stl_mode"

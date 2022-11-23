@@ -1,5 +1,8 @@
 pluginManagement {
     repositories {
+        maven {
+            url("$rootDir/local_plugin")
+        }
         gradlePluginPortal()
         google()
         mavenCentral()
@@ -8,11 +11,15 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven {
+            url("$rootDir/local_maven")
+        }
         google()
         mavenCentral()
     }
 }
 rootProject.name = "ComposeCalculator"
+// 子模块
 include ':app'
 include ':lib_net'
 include ':lib_data'
@@ -21,3 +28,7 @@ include ':lib_base'
 include ':permissionx'
 include ':lib_permission'
 include ':module_launcher'
+include ':lib_version'
+include ':lib_router'
+include ':lib_constant'
+include ':plugin_compile'

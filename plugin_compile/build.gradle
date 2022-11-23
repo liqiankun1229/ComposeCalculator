@@ -1,0 +1,66 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'groovy'
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+gradlePlugin {
+    plugins{
+        create("compilePlugin"){
+            id = "com.lqk.compile"
+            implementationClass = "com.lqk.compile.CompilePlugin"
+        }
+    }
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDir("src/main/groovy")
+        }
+        java {
+            srcDir("src/main/java")
+        }
+//        resources {
+//            srcDir("src/main/resources")
+//        }
+    }
+}
+
+dependencies {
+    implementation localGroovy()
+    implementation gradleApi()
+}
+
+//gradlePlugin {
+//    plugins {
+//        modularPlugin {
+//            id ="com.lqk.compile"
+//            implementationClass = "com"
+//        }
+//    }
+//}
+
+// 发布插件
+publishing {
+    repositories {
+        maven {
+            url = "$rootDir/local_plugin"
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId = "com.lqk.compile"
+            artifactId = "compile"
+            version = "0.0.1"
+            from components.java
+        }
+    }
+}
