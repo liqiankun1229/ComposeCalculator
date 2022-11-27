@@ -1,0 +1,7 @@
+// apk/aab 签名信息
+//android {
+//    signingConfigs {
+//        storeFile file("$rootDir/jks/wechat.jks")
+//
+//    }
+//}

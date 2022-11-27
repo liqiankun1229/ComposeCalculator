@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file("nbs.newlens.nativecrash-2.0.0.aar"))

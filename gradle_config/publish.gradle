@@ -3,13 +3,16 @@ apply plugin: "maven-publish"
 publishing {
     repositories {
         maven {
+            // 保存到的本地目录
             url = "$rootDir/local_maven"
         }
     }
     publications {
         maven(MavenPublication) {
+            // 外部引用方式 "$groupId:$artifactId:$version"
             groupId = "com.lqk"
-            artifactId = "${project.name}"
+            // module 命名 为 lib_xxx 或 module_xxx
+            artifactId = "${project.name.replaceAll("lib_", "").replaceAll("module_", "")}"
             version = "0.0.1"
             //aar 文件
             afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }

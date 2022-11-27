@@ -23,7 +23,9 @@ open class BaseViewModel : ViewModel() {
 
     }
 
-
+    /**
+     * 分发
+     */
     fun dispatch(action: BaseAction) {
 
     }

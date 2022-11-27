@@ -10,7 +10,7 @@ import com.lqk.base.activity.BaseActivity
  */
 abstract class BaseVBActivity<VB : ViewBinding> : BaseActivity() {
 
-    private val viewBinding: VB by lazy {
+    val viewBinding: VB by lazy {
         initViewBinding()
     }
 

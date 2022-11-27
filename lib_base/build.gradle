@@ -5,7 +5,7 @@ plugins {
 import com.lqk.plugin.StartPlugin
 
 android {
-    compileSdk 33
+    compileSdk top_sdk
 
     buildFeatures {
         compose true
@@ -14,10 +14,10 @@ android {
     }
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk min_sdk
+        targetSdk top_sdk
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner runner
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -28,14 +28,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility java_version
+        targetCompatibility java_version
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = jvm_version
     }
     namespace 'com.lqk.base'
 }

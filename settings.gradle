@@ -32,3 +32,8 @@ include ':lib_version'
 include ':lib_router'
 include ':lib_constant'
 include ':plugin_compile'
+include ':lib_camera'
+include ':lib_share'
+
+// 本地 aar 文件模块
+include ':local_aar:newlens'

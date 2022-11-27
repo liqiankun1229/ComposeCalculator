@@ -34,16 +34,16 @@ apply plugin: CompilePlugin
 
 
 android {
-    compileSdk 33
+    compileSdk top_sdk
 
     defaultConfig {
         applicationId "com.lqk.compose"
-        minSdk 21
-        targetSdk 33
+        minSdk min_sdk
+        targetSdk top_sdk
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner runner
         vectorDrawables {
             useSupportLibrary true
         }
@@ -56,11 +56,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility java_version
+        targetCompatibility java_version
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = jvm_version
     }
     buildFeatures {
         viewBinding true
@@ -119,4 +119,8 @@ dependencies {
     implementation project(":lib_data")
     // 权限
     implementation project(":lib_permission")
+
+    implementation project(":local_aar:newlens")
 }
+
+apply from: "$rootDir/gradle_config/signed.gradle"

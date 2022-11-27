@@ -9,6 +9,7 @@ class StartPlugin implements Plugin<Project> {
         project.afterEvaluate {
 
             println("开始编译")
+
         }
 
     }

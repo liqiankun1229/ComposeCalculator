@@ -4,7 +4,7 @@ android {
 //    defaultPublishConfig "DefaultCppRelease"
 
     defaultConfig {
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner runner
         externalNativeBuild {
             cmake {
                 // uncomment this line to support armeabi

@@ -4,16 +4,16 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk top_sdk
 
     defaultConfig {
         applicationId "com.lqk.launcher"
-        minSdk 21
-        targetSdk 33
+        minSdk min_sdk
+        targetSdk top_sdk
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner runner
     }
 
     buildFeatures {
@@ -28,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility java_version
+        targetCompatibility java_version
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = jvm_version
     }
     namespace 'com.lqk.launcher'
 }
@@ -41,10 +41,13 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     implementation project(":lib_base")
+
+    implementation project(":lib_camera")
 }

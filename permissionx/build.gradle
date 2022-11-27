@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk top_sdk
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk min_sdk
+        targetSdk top_sdk
     }
 
     buildTypes {
