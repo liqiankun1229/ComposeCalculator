@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk top_sdk
+    compileSdk compile_sdk
 
     defaultConfig {
         applicationId "com.lqk.launcher"
         minSdk min_sdk
-        targetSdk top_sdk
+        targetSdk target_sdk
         versionCode 1
         versionName "1.0"
 

@@ -19,12 +19,15 @@ open class BaseViewModel : ViewModel() {
     val viewEvents: LiveData<String> = _viewEvents
 
 
+    /**
+     * 接收到用户界面事件 准备分发处理请求数据(或者其他耗时操作)
+     */
     fun emit(state: BaseViewState) {
 
     }
 
     /**
-     * 分发
+     * 分发用户事件返回
      */
     fun dispatch(action: BaseAction) {
 

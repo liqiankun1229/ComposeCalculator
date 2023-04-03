@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.lqk.share'
-    compileSdk top_sdk
+    compileSdk compile_sdk
 
     defaultConfig {
         minSdk min_sdk
-        targetSdk top_sdk
+        targetSdk target_sdk
 
         testInstrumentationRunner runner
         consumerProguardFiles "consumer-rules.pro"

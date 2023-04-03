@@ -2,9 +2,11 @@ package com.lqk.camera
 
 import android.Manifest
 import android.content.ContentValues
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Choreographer.FrameData
 import androidx.camera.core.*
 import androidx.camera.core.ImageCapture.OutputFileResults
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -95,9 +97,9 @@ class CameraActivity : BaseVBActivity<ActivityCameraBinding>() {
                 // 简单拍照
 //                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
                 // 结合图片分析
-//                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, imageAnalysis)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, imageAnalysis)
                 // 视频
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, videoCapture)
+//                cameraProvider.bindToLifecycle(this, cameraSelector, preview, videoCapture)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

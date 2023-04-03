@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        // 本地相对目录 maven plugin 本地库
         maven {
             url("$rootDir/local_plugin")
         }
@@ -11,6 +12,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        // 本地相对目录 maven 本地库
         maven {
             url("$rootDir/local_maven")
         }
@@ -21,8 +23,11 @@ dependencyResolutionManagement {
 rootProject.name = "ComposeCalculator"
 // 子模块
 include ':app'
+// 网络请求
 include ':lib_net'
+// 持久化存储
 include ':lib_data'
+// mmap
 include ':mmkv'
 include ':lib_base'
 include ':permissionx'
@@ -37,3 +42,9 @@ include ':lib_share'
 
 // 本地 aar 文件模块
 include ':local_aar:newlens'
+include ':lib_web'
+include ':lib_utils'
+include ':c_native'
+include ':lib_biometric'
+include ':lib_flutter'
+include ':c_http'

@@ -47,3 +47,11 @@
 
 注解
 
+    元注解: 
+        @Target 
+        @Retention 存储范围 Runtime > Class > Source
+        @Inherited
+        @Documented
+
+        @Repeatable
+        @Native

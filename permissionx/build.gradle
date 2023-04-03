@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk top_sdk
+    compileSdk compile_sdk
 
     defaultConfig {
         minSdk min_sdk
-        targetSdk top_sdk
+        targetSdk target_sdk
     }
 
     buildTypes {
@@ -17,7 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility java_version
+        targetCompatibility java_version
+    }
     buildFeatures {
         viewBinding true
     }
@@ -26,7 +29,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }
 
 apply from: "$rootDir/gradle_config/publish.gradle"

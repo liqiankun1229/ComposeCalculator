@@ -1,0 +1,158 @@
+
+// ==================================================================================================
+// 路径引入
+// ==================================================================================================
+// 配置 Flutter 工程目录
+//setBinding(new Binding([gradle: this]))
+//evaluate(new File(
+//        settingsDir,
+//        // 工程
+//        '../flutter_project/.android/include_flutter.groovy'
+//))
+
+// ==================================================================================================
+// include_flutter.groovy
+// ==================================================================================================
+// flutter 工程目录路径
+//def scriptFile = getClass().protectionDomain.codeSource.location.toURI()
+//def flutterProjectRoot = new File(scriptFile).parentFile.parentFile
+//
+//gradle.include ":flutter"
+// flutter 模块
+//gradle.project(":flutter").projectDir = new File(flutterProjectRoot, ".android/Flutter")
+// 获取配置文件 flutter sdk 路径 以及版本信息
+//def localPropertiesFile = new File(flutterProjectRoot, ".android/local.properties")
+//def properties = new Properties()
+//
+//assert localPropertiesFile.exists(), "❗️The Flutter module doesn't have a `$localPropertiesFile` file." +
+//        "\nYou must run `flutter pub get` in `$flutterProjectRoot`."
+//localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+//
+//def flutterSdkPath = properties.getProperty("flutter.sdk")
+//assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+//gradle.apply from: "$flutterSdkPath/packages/flutter_tools/gradle/module_plugin_loader.gradle"
+
+// ==================================================================================================
+// 解析 flutter 工程配置
+// ==================================================================================================
+// Copyright 2014 The Flutter Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// This file is included from `<module>/.android/include_flutter.groovy`,
+// so it can be versioned with the Flutter SDK.
+
+//import groovy.json.JsonSlurper
+//
+//def moduleProjectRoot = project(':flutter').projectDir.parentFile.parentFile
+//
+//def object = null;
+//String flutterModulePath = project(':flutter').projectDir.parentFile.getAbsolutePath()
+//// Note: if this logic is changed, also change the logic in app_plugin_loader.gradle.
+//def pluginsFile = new File(moduleProjectRoot, '.flutter-plugins-dependencies')
+//if (pluginsFile.exists()) {
+//    object = new JsonSlurper().parseText(pluginsFile.text)
+//    assert object instanceof Map
+//    assert object.plugins instanceof Map
+//    assert object.plugins.android instanceof List
+//    // Includes the Flutter plugins that support the Android platform.
+//    object.plugins.android.each { androidPlugin ->
+//        assert androidPlugin.name instanceof String
+//        assert androidPlugin.path instanceof String
+//        // Skip plugins that have no native build (such as a Dart-only
+//        // implementation of a federated plugin).
+//        def needsBuild = androidPlugin.containsKey('native_build') ? androidPlugin['native_build'] : true
+//        if (!needsBuild) {
+//            return
+//        }
+//        def pluginDirectory = new File(androidPlugin.path, 'android')
+//        assert pluginDirectory.exists()
+//        include ":${androidPlugin.name}"
+//        project(":${androidPlugin.name}").projectDir = pluginDirectory
+//    }
+//}
+//
+//gradle.getGradle().projectsLoaded { g ->
+//    g.rootProject.beforeEvaluate { p ->
+//        p.subprojects { subproject ->
+//            if (object != null && object.plugins != null && object.plugins.android != null
+//                    && object.plugins.android.name.contains(subproject.name)) {
+//                File androidPluginBuildOutputDir = new File(flutterModulePath + File.separator
+//                        + "plugins_build_output" + File.separator + subproject.name);
+//                if (!androidPluginBuildOutputDir.exists()) {
+//                    androidPluginBuildOutputDir.mkdirs()
+//                }
+//                subproject.buildDir = androidPluginBuildOutputDir
+//            }
+//        }
+//        def _mainModuleName = binding.variables['mainModuleName']
+//        if (_mainModuleName != null && !_mainModuleName.empty) {
+//            p.ext.mainModuleName = _mainModuleName
+//        }
+//    }
+//    g.rootProject.afterEvaluate { p ->
+//        p.subprojects { sp ->
+//            if (sp.name != 'flutter') {
+//                sp.evaluationDependsOn(':flutter')
+//            }
+//        }
+//    }
+//}
+
+// ==================================================================================================
+
+// Generated file. Do not edit.
+
+
+// ==================================================================================================
+// flutter module 文件
+// ==================================================================================================
+//def localProperties = new Properties()
+//def localPropertiesFile = new File(buildscript.sourceFile.parentFile.parentFile, 'local.properties')
+//if (localPropertiesFile.exists()) {
+//    localPropertiesFile.withReader('UTF-8') { reader ->
+//        localProperties.load(reader)
+//    }
+//}
+// sdk 路径
+//def flutterRoot = localProperties.getProperty('flutter.sdk')
+//if (flutterRoot == null) {
+//    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+//}
+// 版本信息 数字 100
+//def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+//if (flutterVersionCode == null) {
+//    flutterVersionCode = '1'
+//}
+// 版本信息 字符串 1.0.0
+//def flutterVersionName = localProperties.getProperty('flutter.versionName')
+//if (flutterVersionName == null) {
+//    flutterVersionName = '1.0'
+//}
+//
+//apply plugin: 'com.android.library'
+//apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+//
+//group 'com.lqk.fcommon'
+//version '1.0'
+//
+//android {
+//    compileSdkVersion flutter.compileSdkVersion
+//    ndkVersion flutter.ndkVersion
+//
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//
+//    defaultConfig {
+//        minSdkVersion flutter.minSdkVersion
+//        targetSdkVersion flutter.targetSdkVersion
+//        versionCode flutterVersionCode.toInteger()
+//        versionName flutterVersionName
+//    }
+//}
+//
+//flutter {
+//    source '../..'
+//}

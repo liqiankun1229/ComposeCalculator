@@ -214,6 +214,7 @@ fun Home() {
                         Button(
                             onClick = {
                                 val c = keyArray[i][j].first
+                                System.out.println("==================点击: $c")
                                 when (c) {
                                     "AC" -> {
                                         mText = ""

@@ -25,4 +25,10 @@ C 层:
 epoll 机制:
 
 
+
+
 select 
+
+poll:
+
+epoll:
