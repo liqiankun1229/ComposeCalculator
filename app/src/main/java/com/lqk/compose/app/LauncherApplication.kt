@@ -2,6 +2,7 @@ package com.lqk.compose.app
 
 import android.app.Application
 import com.lqk.data.MMKVHelper
+import com.lqk.flutter.FlutterModuleHelper
 
 /**
  * @author LQK
@@ -13,5 +14,7 @@ class LauncherApplication : Application() {
         super.onCreate()
         // 初始化 mmkv
         MMKVHelper.initMMKV(this)
+        // flutter 模块
+        FlutterModuleHelper.initFlutter(this)
     }
 }

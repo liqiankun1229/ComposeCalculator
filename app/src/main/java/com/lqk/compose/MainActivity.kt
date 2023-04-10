@@ -1,6 +1,7 @@
 package com.lqk.compose
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -33,6 +34,7 @@ import com.lqk.compose.R.drawable
 import com.lqk.compose.ui.theme.OnlyComposeTheme
 import com.lqk.compose.vm.MainViewModel
 import com.lqk.data.MMKVHelper
+import com.lqk.flutter.FlutterNativeActivity
 import com.permissionx.guolindev.PermissionX
 import com.permissionx.guolindev.dialog.permissionMapOnQ
 
@@ -51,7 +53,9 @@ class MainActivity : BaseComposeActivity() {
                 }
             }
         }
+        // 保存一个数据
         MMKVHelper.saveString("project", "CalculatorProject")
+        // 初始化 ViewModel 层
         val mainViewModel = MainViewModel()
         mainViewModel.loadPackage()
     }
@@ -162,7 +166,11 @@ fun Home() {
                 modifier = Modifier
                     .width(52.dp)
                     .height(52.dp)
-                    .padding(10.dp),
+                    .padding(10.dp)
+                    .clickable {
+                        Log.d("MainActivity", "历史记录")
+                        activity.startActivity(Intent(activity, FlutterNativeActivity::class.java))
+                    },
                 alignment = Alignment.CenterEnd,
                 contentDescription = "历史"
             )

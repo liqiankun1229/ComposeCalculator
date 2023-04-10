@@ -1,8 +1,13 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 pluginManagement {
     repositories {
         // 本地相对目录 maven plugin 本地库
         maven {
             url("$rootDir/local_plugin")
+        }
+        maven {
+            url 'https://storage.googleapis.com/download.flutter.io'
         }
         gradlePluginPortal()
         google()
@@ -10,11 +15,15 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         // 本地相对目录 maven 本地库
         maven {
             url("$rootDir/local_maven")
+        }
+        maven {
+            url 'https://storage.googleapis.com/download.flutter.io'
         }
         google()
         mavenCentral()
@@ -48,3 +57,7 @@ include ':c_native'
 include ':lib_biometric'
 include ':lib_flutter'
 include ':c_http'
+
+// flutter
+apply from: 'flutter_config.gradle'
+//include ':flutter_login'

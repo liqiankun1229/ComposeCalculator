@@ -2,7 +2,7 @@ ext {
     // compile_sdk 和 target_sdk 统一为 最高版本的sdk
     target_sdk = 33
     compile_sdk = 33
-    min_sdk = 21
+    min_sdk = 24
     runner = "androidx.test.runner.AndroidJUnitRunner"
     java_version = JavaVersion.VERSION_11
     jvm_version = "11"

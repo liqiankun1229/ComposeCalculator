@@ -1,0 +1,2 @@
+com.networkbench.nbslens.nbsnativecrashlib
+string app_name

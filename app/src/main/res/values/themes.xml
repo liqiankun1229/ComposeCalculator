@@ -2,6 +2,16 @@
 <resources>
 
     <style name="Theme.OnlyCompose" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:statusBarColor">#a0000000</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/colorWhite</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorTransparent</item>
+        <item name="colorPrimaryDark">@color/colorTransparent</item>
+        <item name="colorAccent">@color/colorTransparent</item>
     </style>
 </resources>

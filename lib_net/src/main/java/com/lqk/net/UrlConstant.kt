@@ -6,5 +6,5 @@ package com.lqk.net
  *
  */
 object UrlConstant {
-    const val Base_URL = "http://192.168.31.71:5000"
+    const val Base_URL = "http://192.168.31.61:5000"
 }
