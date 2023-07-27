@@ -1,8 +1,8 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:2:1-16:12
-INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:2:1-16:12
-INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:2:1-16:12
+ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:2:1-17:12
 	package
 		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:3:5-30
 		INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml
@@ -16,21 +16,21 @@ ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\m
 	android:name
 		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:5:20-62
 application
-ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:6:3-15:17
+ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:6:3-16:17
 	tools:node
-		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:6:16-34
+		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:7:5-23
 meta-data#flutterProjectType
-ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:7:5-9:32
+ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:8:5-10:32
 	android:value
-		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:9:7-29
+		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:10:7-29
 	android:name
-		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:8:7-40
+		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:9:7-40
 meta-data#flutterEmbedding
-ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:12:7-14:31
+ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:13:7-15:31
 	android:value
-		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:14:11-28
+		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:15:11-28
 	android:name
-		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:13:11-42
+		ADDED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml:14:11-42
 uses-sdk
 INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml

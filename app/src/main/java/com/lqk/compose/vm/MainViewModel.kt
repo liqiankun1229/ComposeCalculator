@@ -24,7 +24,8 @@ class MainViewModel : ViewModel() {
     fun loadPackage() {
         viewModelScope.launch {
             try {
-                val result = RetrofitHelper.instance.initService(ServiceAPI::class.java).initPackageList()
+                val result =
+                    RetrofitHelper.instance.initService(ServiceAPI::class.java).initPackageList()
                 result.data.forEach {
                     Log.d(TAG, "loadPackage: ${it.name} : ${it.url}")
                 }
@@ -34,24 +35,29 @@ class MainViewModel : ViewModel() {
                         // 请求被关闭
                         "请求被关闭"
                     }
+
                     is SocketTimeoutException -> {
                         // 链接超时
                         "链接超时"
                     }
+
                     is JsonParseException -> {
                         // 数据解析失败
                         "数据解析失败"
                     }
+
                     is HttpException -> {
                         when (e.code()) {
                             405 -> {
                                 "链接不存在"
                             }
+
                             else -> {
                                 "未知错误"
                             }
                         }
                     }
+
                     else -> {
                         // 未知错误
                         "未知错误"

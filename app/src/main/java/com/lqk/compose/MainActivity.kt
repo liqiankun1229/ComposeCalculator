@@ -56,9 +56,12 @@ class MainActivity : BaseComposeActivity() {
         // 保存一个数据
         MMKVHelper.saveString("project", "CalculatorProject")
         // 初始化 ViewModel 层
-        val mainViewModel = MainViewModel()
+        mainViewModel = MainViewModel()
         mainViewModel.loadPackage()
     }
+
+    // 网络请求
+    private lateinit var mainViewModel: MainViewModel
 
     private val launchPermissionContract = RequestPermission()
     val launchPermission = registerForActivityResult(launchPermissionContract) {
@@ -66,6 +69,10 @@ class MainActivity : BaseComposeActivity() {
         Log.d(TAG, "launch: 权限请求 $it")
     }
 
+
+    fun doNetGetPackage(){
+        mainViewModel.loadPackage()
+    }
 }
 
 @Composable
@@ -227,6 +234,7 @@ fun Home() {
                                     "AC" -> {
                                         mText = ""
                                         mTextNum = ""
+                                        (activity as MainActivity).doNetGetPackage()
                                     }
                                     "DEL" -> {
                                         if (mText != "") {
@@ -291,7 +299,6 @@ fun Home() {
                                 .weight(1f)
                                 .aspectRatio(1f),
                             colors = ButtonDefaults.buttonColors(backgroundColor = keyArray[i][j].second)
-
                         ) {
                             Text(
                                 text = keyArray[i][j].first,

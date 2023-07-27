@@ -30,6 +30,11 @@ group 'com.lqk.fcommon'
 version '1.0'
 
 android {
+    // Conditional for compatibility with AGP <4.2.
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.lqk.fcommon'
+    }
+
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 

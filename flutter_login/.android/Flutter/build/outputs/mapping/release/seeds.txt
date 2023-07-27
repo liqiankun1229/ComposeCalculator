@@ -2,5 +2,5 @@ com.lqk.fcommon.R
 io.flutter.plugins.GeneratedPluginRegistrant
 io.flutter.plugins.GeneratedPluginRegistrant: java.lang.String TAG
 com.lqk.fcommon.R: R()
-io.flutter.plugins.GeneratedPluginRegistrant: GeneratedPluginRegistrant()
 io.flutter.plugins.GeneratedPluginRegistrant: void registerWith(io.flutter.embedding.engine.FlutterEngine)
+io.flutter.plugins.GeneratedPluginRegistrant: GeneratedPluginRegistrant()

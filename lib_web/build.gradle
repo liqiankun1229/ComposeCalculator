@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -35,4 +36,35 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    // 携程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    // 图片选择
+    api("io.github.lucksiege:pictureselector:v2.7.3-rc08")
+    // Glide 图片加载
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    kapt 'com.github.bumptech.glide:compiler:4.14.2'
+    //api 'com.tencent.tbs:tbssdk:44085'
+    // mySQL 链接
+    implementation("mysql:mysql-connector-java:8.0.28")
+    // RecycleView
+    api("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.8")
+
+    // 数据存储 KV 替代 sp
+    api("com.tencent:mmkv-static:1.2.11")
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
+    // 银联
+    implementation files("libs/UPPayAssistEx.jar")
+    // TBS X5WebView
+    implementation files("libs/tbs_sdk.jar")
+    implementation project(path: ":web:tbs")
+    // Weex 容器
+    implementation("io.weex:weex_sdk:0.30.2")
+    implementation("com.taobao.android:weex_inspector:0.24.2.11")
+    // fastjson
+    implementation("com.alibaba:fastjson:2.0.19.android")
 }

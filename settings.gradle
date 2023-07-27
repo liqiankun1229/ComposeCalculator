@@ -52,6 +52,7 @@ include ':lib_share'
 // 本地 aar 文件模块
 include ':local_aar:newlens'
 include ':lib_web'
+include(":web:tbs")
 include ':lib_utils'
 include ':c_native'
 include ':lib_biometric'
@@ -61,3 +62,6 @@ include ':c_http'
 // flutter
 apply from: 'flutter_config.gradle'
 //include ':flutter_login'
+include ':module_activity'
+include ':lib_rn'
+include ':lib_weex'

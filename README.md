@@ -11,13 +11,14 @@
     Combine with the exclude tag: -tag~:<exclude-regular-expression-tag>
     level:[ VERBOSE | INFO | ASSERT |DEBUG | WARN | ERROR ]
 ### 编译过程:
-    aapt - 编译资源生成 R.java 文件
     aidl - 编译 aidl 文件 成 java 文件
+    生成 BuildConfig.java
+    aapt - 编译资源生成 R.java 文件
     javac - 编译所有Java文件(R.java, aidl) 成 class 文件
-    dex - 编译 class 文件 成 dex 文件
+    d8/dex - 编译 class 文件 成 dex 文件
     apkbuilder - 编译 dex, values资源, 其他资源文件 生成 apk 文件
+    zipalign - 对资源文件进行对齐操作
     apksigner/jarsigner - 使用 密钥 jks 对 apk 进行签名
-    zipalign - 
 ### 工程信息
 Groovy(kts 在拓展上( 两个 xx.gradle.kts之间的引用)有些瑕疵) + Kotlin + Java
 

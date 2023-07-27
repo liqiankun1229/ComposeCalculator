@@ -47,7 +47,6 @@ class FlutterNativeActivity : AppCompatActivity(), OnActivityMsgListener {
 
     }
 
-
     private fun initListener() {
         viewBinding.tv.setOnClickListener {
             FlutterOnlyActivity.show(this)

@@ -71,7 +71,6 @@ class FlutterOnlyActivity : FlutterActivity() {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
                 // 保存 events 对象, 用于给 Flutter 传值
 
-
             }
 
             override fun onCancel(arguments: Any?) {
