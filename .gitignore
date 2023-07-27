@@ -8,3 +8,9 @@
 .cxx
 local.properties
 /.idea/gradle.xml
+/flutter_login/.android/build/
+/flutter_login/.android/Flutter/build/
+/flutter_login/.android/plugins_build_output/
+/flutter_login/build/
+/flutter_login/.dart_tool/flutter_build/
+/local_aar/newlens/build/.transforms/
