@@ -16,6 +16,7 @@ Java 层:
         messageQueue
         looper
     Looper
+    ThreadLocal
 
 C 层:
 
@@ -26,7 +27,7 @@ epoll 机制:
 
 
 
-
+Linux 三种 IO 多路复用的方案
 select: 
 
 poll:

@@ -104,7 +104,6 @@ dependencies {
     implementation "androidx.compose.ui:ui:1.4.1"
     implementation "androidx.compose.material:material:1.4.1"
     implementation "androidx.compose.ui:ui-tooling-preview:1.4.1"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -119,9 +118,9 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     // gson 解析
-    implementation("com.google.code.gson:gson:2.9.0")
+    implementation('com.google.code.gson:gson:2.10.1')
     // 协程
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3')
     // viewModel + liveDate
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
@@ -129,8 +128,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
 
     // 图片加载 glide
-    implementation("com.github.bumptech.glide:glide:4.14.2")
-    kapt("com.github.bumptech.glide:compiler:4.14.2")
+    implementation('com.github.bumptech.glide:glide:4.15.1')
+    kapt('com.github.bumptech.glide:compiler:4.15.1')
     // PermissionX
     implementation project(":permissionx")
     // 基本框架

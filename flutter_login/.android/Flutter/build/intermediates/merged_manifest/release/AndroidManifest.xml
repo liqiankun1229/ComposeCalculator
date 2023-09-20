@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lqk.fcommon" >
 
-    <uses-sdk android:minSdkVersion="16" />
+    <uses-sdk android:minSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

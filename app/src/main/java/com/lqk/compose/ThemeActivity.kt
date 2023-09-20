@@ -21,4 +21,6 @@ class ThemeActivity : ComponentActivity() {
 
 @Composable
 fun Content() {
+    var cls = String::class.java
+    var const = cls.getConstructor()
 }

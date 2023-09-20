@@ -15,7 +15,7 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/collection-1.17.1",
+      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/collection-1.17.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -33,7 +33,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///D:/AndroidFlutterSDK/flutter/packages/flutter",
+      "rootUri": "file:///D:/SDK/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -45,7 +45,7 @@
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///D:/AndroidFlutterSDK/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///D:/SDK/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -68,16 +68,10 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "js",
-      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/js-0.6.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "material_color_utilities",
-      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/material_color_utilities-0.2.0",
+      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/material_color_utilities-0.5.0",
       "packageUri": "lib/",
-      "languageVersion": "2.13"
+      "languageVersion": "2.17"
     },
     {
       "name": "meta",
@@ -111,7 +105,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///D:/AndroidFlutterSDK/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///D:/SDK/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -123,15 +117,15 @@
     },
     {
       "name": "sqflite",
-      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/sqflite-2.2.8+4",
+      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/sqflite-2.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "sqflite_common",
-      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/sqflite_common-2.4.5+1",
+      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/sqflite_common-2.5.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "string_scanner",
@@ -164,6 +158,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "web",
+      "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/web-0.1.4-beta",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "xml",
       "rootUri": "file:///C:/Users/22374/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/xml-6.3.0",
       "packageUri": "lib/",
@@ -176,7 +176,7 @@
       "languageVersion": "2.14"
     }
   ],
-  "generated": "2023-07-04T00:50:55.900146Z",
+  "generated": "2023-08-21T09:16:29.356164Z",
   "generator": "pub",
-  "generatorVersion": "3.0.5"
+  "generatorVersion": "3.1.0"
 }

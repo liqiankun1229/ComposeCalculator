@@ -35,6 +35,9 @@ class FlutterCallNative(private var activity: Context) : MethodChannel.MethodCal
 //        }
     }
 
+    /**
+     * 接收 Flutter 传递给原生的函数调用
+     */
     override fun onMethodCall(methodCall: MethodCall, result: MethodChannel.Result) {
         when (methodCall.method) {
             "oneAct" -> {

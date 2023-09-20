@@ -4,7 +4,7 @@
 4    xmlns:tools="http://schemas.android.com/tools"
 5    package="com.lqk.fcommon" >
 6
-7    <uses-sdk android:minSdkVersion="16" />
+7    <uses-sdk android:minSdkVersion="19" />
 7-->D:\AndroidDemo\ComposeCalculator\flutter_login\.android\Flutter\src\main\AndroidManifest.xml
 8
 9    <uses-permission android:name="android.permission.INTERNET" />
